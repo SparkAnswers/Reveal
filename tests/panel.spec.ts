@@ -14,16 +14,16 @@ test('removing the image shows the empty state', async ({ gotoPanelEditPage, rea
   await expect(page.getByTestId('reveal-empty')).toContainText('Upload an image');
 });
 
-test('scheduled panel on the demo dashboard renders blank or shown, never an error', async ({
+test('scheduled panel renders blank or shown, never an error', async ({
   gotoDashboardPage,
   readProvisionedDashboard,
   page,
 }) => {
-  const dashboard = await readProvisionedDashboard({ fileName: 'dashboard.json' });
+  // The Motorcycle demo's "Bike reveal" is a repeat-schedule panel in the top row (always in view).
+  const dashboard = await readProvisionedDashboard({ fileName: 'motorcycle.json' });
   await gotoDashboardPage(dashboard);
-  // The schedule panels sit below the fold and Grafana lazy-loads offscreen panels.
-  await page.mouse.wheel(0, 4000);
-  const even = page.locator('section[data-testid="data-testid Panel header Pops up on even minutes"]');
-  await expect(even).toBeVisible({ timeout: 15_000 });
-  await expect(even.locator('[data-testid="reveal-hidden"], img')).toHaveCount(1);
+  const bike = page.locator('section[data-testid="data-testid Panel header Bike reveal"]');
+  await expect(bike).toBeVisible({ timeout: 15_000 });
+  await expect(bike.locator('[data-testid="reveal-hidden"], img')).toHaveCount(1, { timeout: 15_000 });
+  await expect(bike).not.toContainText(/Panel plugin not found|error/i);
 });
