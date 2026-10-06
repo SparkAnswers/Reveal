@@ -34,6 +34,10 @@
         "path": "img/screenshot-dashboard.png"
       },
       {
+        "name": "Two panels alternating every minute",
+        "path": "img/screenshot-alternating.png"
+      },
+      {
         "name": "Panel editor with live preview",
         "path": "img/screenshot-editor.png"
       }
