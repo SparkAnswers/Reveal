@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <!-- Reveal: an eye behind a curtain being drawn back -->
+  <rect x="4" y="4" width="56" height="56" rx="10" fill="#1F2430"/>
+  <path d="M8 32c6-9 14-14 24-14s18 5 24 14c-6 9-14 14-24 14S14 41 8 32z" fill="#F8FAFC" opacity=".92"/>
+  <circle cx="32" cy="32" r="8.5" fill="#3D71D9"/>
+  <circle cx="32" cy="32" r="3.5" fill="#0B0C0E"/>
+  <circle cx="35.5" cy="28.5" r="1.8" fill="#F8FAFC"/>
+  <path d="M4 14C4 8.5 8.5 4 14 4h12v56H14C8.5 60 4 55.5 4 50V14z" fill="#E0B400"/>
+  <path d="M26 4v56c-4-5-6-14-6-28s2-23 6-28z" fill="#C49A00"/>
+  <path d="M10 4v56M18 4v56" stroke="#C49A00" stroke-width="1.5" opacity=".6"/>
+  <path d="M8 30h24v4H8z" fill="#E0B400"/>
+</svg>

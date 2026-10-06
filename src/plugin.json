@@ -1,0 +1,49 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
+  "type": "panel",
+  "name": "Reveal",
+  "id": "sparks1223-reveal-panel",
+  "info": {
+    "keywords": ["panel", "image", "countdown", "reveal", "teaser"],
+    "description": "Progressively reveals an image or GIF as a date approaches: blur, pixelate, puzzle and more",
+    "author": {
+      "name": "Sparks1223",
+      "url": "https://github.com/SparkAnswers"
+    },
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://github.com/SparkAnswers/Reveal"
+      },
+      {
+        "name": "License",
+        "url": "https://github.com/SparkAnswers/Reveal/blob/main/LICENSE"
+      },
+      {
+        "name": "Report an issue",
+        "url": "https://github.com/SparkAnswers/Reveal/issues"
+      }
+    ],
+    "screenshots": [
+      {
+        "name": "Four reveal modes on a dashboard",
+        "path": "img/screenshot-dashboard.png"
+      },
+      {
+        "name": "Panel editor with live preview",
+        "path": "img/screenshot-editor.png"
+      }
+    ],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+  "dependencies": {
+    "grafanaDependency": ">=12.3.0",
+    "plugins": []
+  },
+  "skipDataQuery": true
+}

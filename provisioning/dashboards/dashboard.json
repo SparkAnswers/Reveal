@@ -1,0 +1,336 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Four Reveal panels (blur, pixelate, jigsaw, advent) revealing the same image between 2026-10-01 and 2026-11-01.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "title": "Reveal modes mockup",
+      "type": "link",
+      "url": "https://github.com/sparks1223/Reveal/tree/main/mockups",
+      "targetBlank": true,
+      "icon": "external link",
+      "tags": []
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "id": 1,
+      "type": "sparks1223-reveal-panel",
+      "title": "Blur - the recommended default",
+      "description": "Gaussian blur from 40px down to 0 with ease-in: shapes first, details last.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "image": {
+          "kind": "dataUrl",
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMjAwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWIyMjMwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGIwZjE2Ii8+PC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJzaGVldCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YzZjFlYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I4YjRhOCIvPjwvbGluZWFyR3JhZGllbnQ+CjxyYWRpYWxHcmFkaWVudCBpZD0ic3BvdCIgY3g9IjAuNSIgY3k9IjAuMSIgcj0iMC44Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQyN2EiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDI3YSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc3BvdCkiLz4KPHJlY3QgeT0iMTUwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTYxYjI0Ii8+CjxlbGxpcHNlIGN4PSIxNjAiIGN5PSIxNTIiIHJ4PSIxMzAiIHJ5PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTI4IDE0NiBDMzIgMTIwIDQ2IDEwNCA3MCA5NiBMMTA4IDYwIEMxMTggNTAgMTM0IDQ0IDE2MCA0NCBDMTg2IDQ0IDIwNCA1MCAyMTYgNjIgTDI0NCA5MiBDMjcyIDEwMCAyODggMTE4IDI5MiAxNDYgWiIgZmlsbD0idXJsKCNzaGVldCkiLz4KPHBhdGggZD0iTTYwIDE0NiBDNzIgMTI4IDgwIDEyMCA5MCAxMDggTTEyMCAxNDYgQzEyMiAxMjQgMTMwIDEwMCAxNTAgNzIgTTIwMCAxNDYgQzIwMiAxMjAgMjEyIDEwMCAyMzAgODYgTTI2MCAxNDYgQzI1NiAxMjggMjUwIDExOCAyNDAgMTEwIiBzdHJva2U9IiM5YTk2OGEiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iMjAiIGZpbGw9IiMwYTBkMTIiLz48Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iOSIgZmlsbD0iIzNhM2Y0OSIvPgo8Y2lyY2xlIGN4PSIyMzQiIGN5PSIxNTAiIHI9IjIwIiBmaWxsPSIjMGEwZDEyIi8+PGNpcmNsZSBjeD0iMjM0IiBjeT0iMTUwIiByPSI5IiBmaWxsPSIjM2EzZjQ5Ii8+CjxjaXJjbGUgY3g9IjI2OCIgY3k9IjU0IiByPSIxOCIgZmlsbD0iI2ZmZDI3YSIvPgo8dGV4dCB4PSIyNjgiIHk9IjYyIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYjIyMzAiPj88L3RleHQ+Cjwvc3ZnPg==",
+          "mime": "image/svg+xml",
+          "width": 320,
+          "height": 200,
+          "bytes": 2104,
+          "name": "car-under-sheet.svg"
+        },
+        "startDate": "2026-10-01T00:00:00Z",
+        "revealDate": "2026-11-01T00:00:00Z",
+        "timeSource": "browser",
+        "showCountdown": true,
+        "animateBeforeReveal": false,
+        "previewOverride": null,
+        "mode": "blur",
+        "modeSettings": {
+          "blurMaxPx": 40
+        },
+        "easing": "easeIn",
+        "caption": "Here it is - the new car!"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [],
+      "transparent": false
+    },
+    {
+      "id": 2,
+      "type": "sparks1223-reveal-panel",
+      "title": "Pixelate - resolution increases",
+      "description": "Canvas down/upscale; block size shrinks from 40px to 1px.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "options": {
+        "image": {
+          "kind": "dataUrl",
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMjAwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWIyMjMwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGIwZjE2Ii8+PC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJzaGVldCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YzZjFlYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I4YjRhOCIvPjwvbGluZWFyR3JhZGllbnQ+CjxyYWRpYWxHcmFkaWVudCBpZD0ic3BvdCIgY3g9IjAuNSIgY3k9IjAuMSIgcj0iMC44Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQyN2EiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDI3YSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc3BvdCkiLz4KPHJlY3QgeT0iMTUwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTYxYjI0Ii8+CjxlbGxpcHNlIGN4PSIxNjAiIGN5PSIxNTIiIHJ4PSIxMzAiIHJ5PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTI4IDE0NiBDMzIgMTIwIDQ2IDEwNCA3MCA5NiBMMTA4IDYwIEMxMTggNTAgMTM0IDQ0IDE2MCA0NCBDMTg2IDQ0IDIwNCA1MCAyMTYgNjIgTDI0NCA5MiBDMjcyIDEwMCAyODggMTE4IDI5MiAxNDYgWiIgZmlsbD0idXJsKCNzaGVldCkiLz4KPHBhdGggZD0iTTYwIDE0NiBDNzIgMTI4IDgwIDEyMCA5MCAxMDggTTEyMCAxNDYgQzEyMiAxMjQgMTMwIDEwMCAxNTAgNzIgTTIwMCAxNDYgQzIwMiAxMjAgMjEyIDEwMCAyMzAgODYgTTI2MCAxNDYgQzI1NiAxMjggMjUwIDExOCAyNDAgMTEwIiBzdHJva2U9IiM5YTk2OGEiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iMjAiIGZpbGw9IiMwYTBkMTIiLz48Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iOSIgZmlsbD0iIzNhM2Y0OSIvPgo8Y2lyY2xlIGN4PSIyMzQiIGN5PSIxNTAiIHI9IjIwIiBmaWxsPSIjMGEwZDEyIi8+PGNpcmNsZSBjeD0iMjM0IiBjeT0iMTUwIiByPSI5IiBmaWxsPSIjM2EzZjQ5Ii8+CjxjaXJjbGUgY3g9IjI2OCIgY3k9IjU0IiByPSIxOCIgZmlsbD0iI2ZmZDI3YSIvPgo8dGV4dCB4PSIyNjgiIHk9IjYyIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYjIyMzAiPj88L3RleHQ+Cjwvc3ZnPg==",
+          "mime": "image/svg+xml",
+          "width": 320,
+          "height": 200,
+          "bytes": 2104,
+          "name": "car-under-sheet.svg"
+        },
+        "startDate": "2026-10-01T00:00:00Z",
+        "revealDate": "2026-11-01T00:00:00Z",
+        "timeSource": "browser",
+        "showCountdown": true,
+        "animateBeforeReveal": false,
+        "previewOverride": null,
+        "mode": "pixelate",
+        "modeSettings": {
+          "pixelMaxSize": 40
+        },
+        "easing": "easeIn",
+        "caption": "Pixel perfect."
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [],
+      "transparent": false
+    },
+    {
+      "id": 3,
+      "type": "sparks1223-reveal-panel",
+      "title": "Jigsaw - one tile per day",
+      "description": "8x5 grid, seeded order (seed derived from revealDate), one step per whole day.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "options": {
+        "image": {
+          "kind": "dataUrl",
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMjAwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWIyMjMwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGIwZjE2Ii8+PC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJzaGVldCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YzZjFlYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I4YjRhOCIvPjwvbGluZWFyR3JhZGllbnQ+CjxyYWRpYWxHcmFkaWVudCBpZD0ic3BvdCIgY3g9IjAuNSIgY3k9IjAuMSIgcj0iMC44Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQyN2EiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDI3YSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc3BvdCkiLz4KPHJlY3QgeT0iMTUwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTYxYjI0Ii8+CjxlbGxpcHNlIGN4PSIxNjAiIGN5PSIxNTIiIHJ4PSIxMzAiIHJ5PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTI4IDE0NiBDMzIgMTIwIDQ2IDEwNCA3MCA5NiBMMTA4IDYwIEMxMTggNTAgMTM0IDQ0IDE2MCA0NCBDMTg2IDQ0IDIwNCA1MCAyMTYgNjIgTDI0NCA5MiBDMjcyIDEwMCAyODggMTE4IDI5MiAxNDYgWiIgZmlsbD0idXJsKCNzaGVldCkiLz4KPHBhdGggZD0iTTYwIDE0NiBDNzIgMTI4IDgwIDEyMCA5MCAxMDggTTEyMCAxNDYgQzEyMiAxMjQgMTMwIDEwMCAxNTAgNzIgTTIwMCAxNDYgQzIwMiAxMjAgMjEyIDEwMCAyMzAgODYgTTI2MCAxNDYgQzI1NiAxMjggMjUwIDExOCAyNDAgMTEwIiBzdHJva2U9IiM5YTk2OGEiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iMjAiIGZpbGw9IiMwYTBkMTIiLz48Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iOSIgZmlsbD0iIzNhM2Y0OSIvPgo8Y2lyY2xlIGN4PSIyMzQiIGN5PSIxNTAiIHI9IjIwIiBmaWxsPSIjMGEwZDEyIi8+PGNpcmNsZSBjeD0iMjM0IiBjeT0iMTUwIiByPSI5IiBmaWxsPSIjM2EzZjQ5Ii8+CjxjaXJjbGUgY3g9IjI2OCIgY3k9IjU0IiByPSIxOCIgZmlsbD0iI2ZmZDI3YSIvPgo8dGV4dCB4PSIyNjgiIHk9IjYyIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYjIyMzAiPj88L3RleHQ+Cjwvc3ZnPg==",
+          "mime": "image/svg+xml",
+          "width": 320,
+          "height": 200,
+          "bytes": 2104,
+          "name": "car-under-sheet.svg"
+        },
+        "startDate": "2026-10-01T00:00:00Z",
+        "revealDate": "2026-11-01T00:00:00Z",
+        "timeSource": "browser",
+        "showCountdown": true,
+        "animateBeforeReveal": false,
+        "previewOverride": null,
+        "mode": "jigsaw",
+        "modeSettings": {
+          "grid": {
+            "cols": 8,
+            "rows": 5
+          }
+        },
+        "easing": "steps",
+        "caption": "All 40 pieces in place."
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [],
+      "transparent": false
+    },
+    {
+      "id": 4,
+      "type": "sparks1223-reveal-panel",
+      "title": "Advent - 31 doors to November",
+      "description": "Calendar-style: door n opens on day n; the next door is highlighted.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "options": {
+        "image": {
+          "kind": "dataUrl",
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMjAwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWIyMjMwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGIwZjE2Ii8+PC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJzaGVldCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YzZjFlYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I4YjRhOCIvPjwvbGluZWFyR3JhZGllbnQ+CjxyYWRpYWxHcmFkaWVudCBpZD0ic3BvdCIgY3g9IjAuNSIgY3k9IjAuMSIgcj0iMC44Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQyN2EiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDI3YSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc3BvdCkiLz4KPHJlY3QgeT0iMTUwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTYxYjI0Ii8+CjxlbGxpcHNlIGN4PSIxNjAiIGN5PSIxNTIiIHJ4PSIxMzAiIHJ5PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTI4IDE0NiBDMzIgMTIwIDQ2IDEwNCA3MCA5NiBMMTA4IDYwIEMxMTggNTAgMTM0IDQ0IDE2MCA0NCBDMTg2IDQ0IDIwNCA1MCAyMTYgNjIgTDI0NCA5MiBDMjcyIDEwMCAyODggMTE4IDI5MiAxNDYgWiIgZmlsbD0idXJsKCNzaGVldCkiLz4KPHBhdGggZD0iTTYwIDE0NiBDNzIgMTI4IDgwIDEyMCA5MCAxMDggTTEyMCAxNDYgQzEyMiAxMjQgMTMwIDEwMCAxNTAgNzIgTTIwMCAxNDYgQzIwMiAxMjAgMjEyIDEwMCAyMzAgODYgTTI2MCAxNDYgQzI1NiAxMjggMjUwIDExOCAyNDAgMTEwIiBzdHJva2U9IiM5YTk2OGEiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iMjAiIGZpbGw9IiMwYTBkMTIiLz48Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iOSIgZmlsbD0iIzNhM2Y0OSIvPgo8Y2lyY2xlIGN4PSIyMzQiIGN5PSIxNTAiIHI9IjIwIiBmaWxsPSIjMGEwZDEyIi8+PGNpcmNsZSBjeD0iMjM0IiBjeT0iMTUwIiByPSI5IiBmaWxsPSIjM2EzZjQ5Ii8+CjxjaXJjbGUgY3g9IjI2OCIgY3k9IjU0IiByPSIxOCIgZmlsbD0iI2ZmZDI3YSIvPgo8dGV4dCB4PSIyNjgiIHk9IjYyIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYjIyMzAiPj88L3RleHQ+Cjwvc3ZnPg==",
+          "mime": "image/svg+xml",
+          "width": 320,
+          "height": 200,
+          "bytes": 2104,
+          "name": "car-under-sheet.svg"
+        },
+        "startDate": "2026-10-01T00:00:00Z",
+        "revealDate": "2026-11-01T00:00:00Z",
+        "timeSource": "browser",
+        "showCountdown": true,
+        "animateBeforeReveal": false,
+        "previewOverride": null,
+        "mode": "advent",
+        "modeSettings": {
+          "doors": 31
+        },
+        "easing": "steps",
+        "caption": "Every door is open."
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [],
+      "transparent": false
+    },
+    {
+      "id": 10,
+      "type": "sparks1223-reveal-panel",
+      "title": "Pops up on even minutes",
+      "description": "Schedule: every 2m, show for 1m, offset 0.",
+      "gridPos": {
+        "x": 0,
+        "y": 18,
+        "w": 8,
+        "h": 7
+      },
+      "targets": [],
+      "options": {
+        "image": {
+          "kind": "dataUrl",
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMjAwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWIyMjMwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGIwZjE2Ii8+PC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJzaGVldCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YzZjFlYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I4YjRhOCIvPjwvbGluZWFyR3JhZGllbnQ+CjxyYWRpYWxHcmFkaWVudCBpZD0ic3BvdCIgY3g9IjAuNSIgY3k9IjAuMSIgcj0iMC44Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQyN2EiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDI3YSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc3BvdCkiLz4KPHJlY3QgeT0iMTUwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTYxYjI0Ii8+CjxlbGxpcHNlIGN4PSIxNjAiIGN5PSIxNTIiIHJ4PSIxMzAiIHJ5PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTI4IDE0NiBDMzIgMTIwIDQ2IDEwNCA3MCA5NiBMMTA4IDYwIEMxMTggNTAgMTM0IDQ0IDE2MCA0NCBDMTg2IDQ0IDIwNCA1MCAyMTYgNjIgTDI0NCA5MiBDMjcyIDEwMCAyODggMTE4IDI5MiAxNDYgWiIgZmlsbD0idXJsKCNzaGVldCkiLz4KPHBhdGggZD0iTTYwIDE0NiBDNzIgMTI4IDgwIDEyMCA5MCAxMDggTTEyMCAxNDYgQzEyMiAxMjQgMTMwIDEwMCAxNTAgNzIgTTIwMCAxNDYgQzIwMiAxMjAgMjEyIDEwMCAyMzAgODYgTTI2MCAxNDYgQzI1NiAxMjggMjUwIDExOCAyNDAgMTEwIiBzdHJva2U9IiM5YTk2OGEiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iMjAiIGZpbGw9IiMwYTBkMTIiLz48Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iOSIgZmlsbD0iIzNhM2Y0OSIvPgo8Y2lyY2xlIGN4PSIyMzQiIGN5PSIxNTAiIHI9IjIwIiBmaWxsPSIjMGEwZDEyIi8+PGNpcmNsZSBjeD0iMjM0IiBjeT0iMTUwIiByPSI5IiBmaWxsPSIjM2EzZjQ5Ii8+CjxjaXJjbGUgY3g9IjI2OCIgY3k9IjU0IiByPSIxOCIgZmlsbD0iI2ZmZDI3YSIvPgo8dGV4dCB4PSIyNjgiIHk9IjYyIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYjIyMzAiPj88L3RleHQ+Cjwvc3ZnPg==",
+          "mime": "image/svg+xml",
+          "width": 320,
+          "height": 200,
+          "bytes": 2104,
+          "name": "car-under-sheet.svg"
+        },
+        "mode": "instant",
+        "modeSettings": {},
+        "easing": "linear",
+        "timeSource": "browser",
+        "showCountdown": true,
+        "animateBeforeReveal": false,
+        "caption": "",
+        "repeat": {
+          "enabled": true,
+          "every": "2m",
+          "showFor": "1m",
+          "align": "clock",
+          "offset": "0s",
+          "chance": 100
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": "sparks1223-reveal-panel",
+      "title": "Pops up on odd minutes",
+      "description": "Schedule: every 2m, show for 1m, offset 1m. Never on at the same time as the even panel.",
+      "gridPos": {
+        "x": 8,
+        "y": 18,
+        "w": 8,
+        "h": 7
+      },
+      "targets": [],
+      "options": {
+        "image": {
+          "kind": "dataUrl",
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMjAwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWIyMjMwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGIwZjE2Ii8+PC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJzaGVldCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YzZjFlYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I4YjRhOCIvPjwvbGluZWFyR3JhZGllbnQ+CjxyYWRpYWxHcmFkaWVudCBpZD0ic3BvdCIgY3g9IjAuNSIgY3k9IjAuMSIgcj0iMC44Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQyN2EiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDI3YSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc3BvdCkiLz4KPHJlY3QgeT0iMTUwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTYxYjI0Ii8+CjxlbGxpcHNlIGN4PSIxNjAiIGN5PSIxNTIiIHJ4PSIxMzAiIHJ5PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTI4IDE0NiBDMzIgMTIwIDQ2IDEwNCA3MCA5NiBMMTA4IDYwIEMxMTggNTAgMTM0IDQ0IDE2MCA0NCBDMTg2IDQ0IDIwNCA1MCAyMTYgNjIgTDI0NCA5MiBDMjcyIDEwMCAyODggMTE4IDI5MiAxNDYgWiIgZmlsbD0idXJsKCNzaGVldCkiLz4KPHBhdGggZD0iTTYwIDE0NiBDNzIgMTI4IDgwIDEyMCA5MCAxMDggTTEyMCAxNDYgQzEyMiAxMjQgMTMwIDEwMCAxNTAgNzIgTTIwMCAxNDYgQzIwMiAxMjAgMjEyIDEwMCAyMzAgODYgTTI2MCAxNDYgQzI1NiAxMjggMjUwIDExOCAyNDAgMTEwIiBzdHJva2U9IiM5YTk2OGEiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iMjAiIGZpbGw9IiMwYTBkMTIiLz48Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iOSIgZmlsbD0iIzNhM2Y0OSIvPgo8Y2lyY2xlIGN4PSIyMzQiIGN5PSIxNTAiIHI9IjIwIiBmaWxsPSIjMGEwZDEyIi8+PGNpcmNsZSBjeD0iMjM0IiBjeT0iMTUwIiByPSI5IiBmaWxsPSIjM2EzZjQ5Ii8+CjxjaXJjbGUgY3g9IjI2OCIgY3k9IjU0IiByPSIxOCIgZmlsbD0iI2ZmZDI3YSIvPgo8dGV4dCB4PSIyNjgiIHk9IjYyIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYjIyMzAiPj88L3RleHQ+Cjwvc3ZnPg==",
+          "mime": "image/svg+xml",
+          "width": 320,
+          "height": 200,
+          "bytes": 2104,
+          "name": "car-under-sheet.svg"
+        },
+        "mode": "instant",
+        "modeSettings": {},
+        "easing": "linear",
+        "timeSource": "browser",
+        "showCountdown": true,
+        "animateBeforeReveal": false,
+        "caption": "",
+        "repeat": {
+          "enabled": true,
+          "every": "2m",
+          "showFor": "1m",
+          "align": "clock",
+          "offset": "1m",
+          "chance": 100
+        }
+      }
+    },
+    {
+      "id": 12,
+      "type": "sparks1223-reveal-panel",
+      "title": "Random: 50% of minutes, blurs in over 15s",
+      "description": "Schedule: every 1m, reveal over 15s, show 30s, 50% chance per cycle (seeded).",
+      "gridPos": {
+        "x": 16,
+        "y": 18,
+        "w": 8,
+        "h": 7
+      },
+      "targets": [],
+      "options": {
+        "image": {
+          "kind": "dataUrl",
+          "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMjAwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWIyMjMwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMGIwZjE2Ii8+PC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJzaGVldCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YzZjFlYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I4YjRhOCIvPjwvbGluZWFyR3JhZGllbnQ+CjxyYWRpYWxHcmFkaWVudCBpZD0ic3BvdCIgY3g9IjAuNSIgY3k9IjAuMSIgcj0iMC44Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQyN2EiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDI3YSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMDAiIGZpbGw9InVybCgjc3BvdCkiLz4KPHJlY3QgeT0iMTUwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTYxYjI0Ii8+CjxlbGxpcHNlIGN4PSIxNjAiIGN5PSIxNTIiIHJ4PSIxMzAiIHJ5PSI3IiBmaWxsPSIjMDAwIiBvcGFjaXR5PSIwLjUiLz4KPHBhdGggZD0iTTI4IDE0NiBDMzIgMTIwIDQ2IDEwNCA3MCA5NiBMMTA4IDYwIEMxMTggNTAgMTM0IDQ0IDE2MCA0NCBDMTg2IDQ0IDIwNCA1MCAyMTYgNjIgTDI0NCA5MiBDMjcyIDEwMCAyODggMTE4IDI5MiAxNDYgWiIgZmlsbD0idXJsKCNzaGVldCkiLz4KPHBhdGggZD0iTTYwIDE0NiBDNzIgMTI4IDgwIDEyMCA5MCAxMDggTTEyMCAxNDYgQzEyMiAxMjQgMTMwIDEwMCAxNTAgNzIgTTIwMCAxNDYgQzIwMiAxMjAgMjEyIDEwMCAyMzAgODYgTTI2MCAxNDYgQzI1NiAxMjggMjUwIDExOCAyNDAgMTEwIiBzdHJva2U9IiM5YTk2OGEiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iMjAiIGZpbGw9IiMwYTBkMTIiLz48Y2lyY2xlIGN4PSI4NiIgY3k9IjE1MCIgcj0iOSIgZmlsbD0iIzNhM2Y0OSIvPgo8Y2lyY2xlIGN4PSIyMzQiIGN5PSIxNTAiIHI9IjIwIiBmaWxsPSIjMGEwZDEyIi8+PGNpcmNsZSBjeD0iMjM0IiBjeT0iMTUwIiByPSI5IiBmaWxsPSIjM2EzZjQ5Ii8+CjxjaXJjbGUgY3g9IjI2OCIgY3k9IjU0IiByPSIxOCIgZmlsbD0iI2ZmZDI3YSIvPgo8dGV4dCB4PSIyNjgiIHk9IjYyIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYjIyMzAiPj88L3RleHQ+Cjwvc3ZnPg==",
+          "mime": "image/svg+xml",
+          "width": 320,
+          "height": 200,
+          "bytes": 2104,
+          "name": "car-under-sheet.svg"
+        },
+        "mode": "blur",
+        "modeSettings": {},
+        "easing": "easeOut",
+        "timeSource": "browser",
+        "showCountdown": true,
+        "animateBeforeReveal": false,
+        "caption": "",
+        "repeat": {
+          "enabled": true,
+          "every": "1m",
+          "revealOver": "15s",
+          "showFor": "30s",
+          "align": "clock",
+          "chance": 50
+        }
+      }
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 39,
+  "tags": ["reveal", "demo"],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Reveal demo",
+  "uid": "reveal-demo",
+  "version": 1,
+  "weekStart": ""
+}
