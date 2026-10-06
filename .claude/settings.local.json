@@ -1,0 +1,59 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  },
+  "enabledMcpjsonServers": [
+    "exa",
+    "context7"
+  ],
+  "statusLine": {
+    "type": "command",
+    "command": "node /home/james/Repos/Reveal/.openrig/context-collector.cjs /home/james/.openrig/state/context-usage /home/james/.openrig/state/provider-usage"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/home/james/Repos/Reveal/.openrig/hooks/scripts/activity-relay.cjs'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/home/james/Repos/Reveal/.openrig/hooks/scripts/activity-relay.cjs'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/home/james/Repos/Reveal/.openrig/hooks/scripts/activity-relay.cjs'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/home/james/Repos/Reveal/.openrig/hooks/scripts/activity-relay.cjs'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

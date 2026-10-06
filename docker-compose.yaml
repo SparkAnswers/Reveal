@@ -1,0 +1,101 @@
+# Reveal panel plugin - everything runs in Docker; never run npm on the host.
+#
+#   make build     -> `build` service  : production webpack build into ./dist
+#   make up        -> `grafana` service: Grafana 12.x with ./dist and ./provisioning mounted
+#   make dev       -> `dev` service    : webpack watch + livereload (run next to `make up`)
+#   make test / typecheck / lint / validate / package
+#
+# The Node tool services share one image (node:22-alpine), mount the repo at /app and keep
+# node_modules in a named volume so the host tree never sees platform-specific binaries.
+
+x-npm: &npm
+  image: node:22-alpine
+  working_dir: /app
+  init: true
+  environment:
+    CI: 'true'
+    npm_config_update_notifier: 'false'
+    npm_config_fund: 'false'
+  volumes:
+    - ./:/app
+    - node_modules:/app/node_modules
+    - npm_cache:/root/.npm
+
+services:
+  grafana:
+    extends:
+      file: .config/docker-compose-base.yaml
+      service: grafana
+    build:
+      args:
+        # Scaffold base defaults to grafana-enterprise 13.1.0; pin to a 12.x tag that exists on
+        # Docker Hub and satisfies plugin.json grafanaDependency >=12.3.0.
+        grafana_image: ${GRAFANA_IMAGE:-grafana}
+        grafana_version: ${GRAFANA_VERSION:-12.4.12}
+    environment:
+      # Images live inside dashboard JSON and every saved version keeps a copy; keep history short.
+      GF_DASHBOARDS_VERSIONS_TO_KEEP: '5'
+    # Grafana mounts ./dist (see .config/docker-compose-base.yaml), so a build must have
+    # happened first. This dependency runs the `build` service before Grafana starts.
+    # Use `docker compose up --no-deps grafana` to skip it.
+    depends_on:
+      build:
+        condition: service_completed_successfully
+
+  # Installs dependencies into the named node_modules volume. `npm ci` needs
+  # package-lock.json; fall back to `npm install` (which also creates the lockfile) if absent.
+  install:
+    <<: *npm
+    command: >
+      sh -c 'if [ -f package-lock.json ]; then npm ci; else echo "package-lock.json missing - running npm install (commit the generated lockfile)"; npm install; fi'
+
+  build:
+    <<: *npm
+    command: >
+      sh -c '[ -x node_modules/.bin/webpack ] || { if [ -f package-lock.json ]; then npm ci; else npm install; fi; } && npm run build'
+
+  dev:
+    <<: *npm
+    command: npm run dev
+    ports:
+      - 35729:35729/tcp # webpack-livereload-plugin; Grafana's index.html loads localhost:35729/livereload.js
+
+  test:
+    <<: *npm
+    command: npm run test:ci
+
+  typecheck:
+    <<: *npm
+    command: npm run typecheck
+
+  lint:
+    <<: *npm
+    command: npm run lint
+
+  # Zips ./dist as <plugin-id>-<version>.zip in the repo root (what you upload / sign).
+  package:
+    <<: *npm
+    command: >
+      sh -c 'set -e; apk add --no-cache zip >/dev/null;
+      test -f dist/plugin.json || { echo "dist/plugin.json missing - run make build first"; exit 1; };
+      ID=$$(node -p "require(\"./dist/plugin.json\").id" | tr -cd "a-zA-Z0-9._-");
+      VER=$$(node -p "require(\"./dist/plugin.json\").info.version");
+      rm -rf "$$ID" "$$ID-$$VER.zip"; cp -r dist "$$ID"; zip -qr "$$ID-$$VER.zip" "$$ID"; rm -rf "$$ID";
+      echo "wrote $$ID-$$VER.zip"'
+
+  # Runs the official Grafana plugin validator against a zip of ./dist
+  # (procedure from .config/AGENTS/skills/validate-plugin.md).
+  validate:
+    <<: *npm
+    command: >
+      sh -c 'set -e; apk add --no-cache zip >/dev/null;
+      test -f dist/plugin.json || { echo "dist/plugin.json missing - run make build first"; exit 1; };
+      ID=$$(node -p "require(\"./dist/plugin.json\").id" | tr -cd "a-zA-Z0-9._-");
+      ZIP="$$ID-$$(date +%Y%m%d-%H%M%S).zip";
+      rm -rf "$$ID"; cp -r dist "$$ID"; zip -qr "$$ZIP" "$$ID"; rm -rf "$$ID";
+      npx --cache .cache/npm -y @grafana/plugin-validator@latest -jsonOutput "$$ZIP";
+      echo "validated $$ZIP (delete it when done)"'
+
+volumes:
+  node_modules:
+  npm_cache:

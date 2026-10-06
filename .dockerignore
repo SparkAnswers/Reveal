@@ -1,0 +1,34 @@
+# Build context for the root Dockerfile. Keep this tight: anything listed here is
+# never sent to the Docker daemon, so the build stays fast and reproducible.
+.git
+.gitignore
+node_modules
+dist
+out
+coverage
+mockups
+openrig-specs
+.openrig
+.claude
+.github
+.mcp.json
+.cprc.json
+.eslintcache
+.cache
+*.zip
+*.log
+
+# Playwright artefacts
+test-results
+playwright-report
+blob-report
+playwright/.cache
+playwright/.auth
+
+# Docker files themselves (not needed inside the image)
+Dockerfile
+.dockerignore
+docker-compose.yaml
+Makefile
+
+.grafana-local/

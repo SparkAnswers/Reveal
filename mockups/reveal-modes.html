@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reveal — mode catalog mockup</title>
+<style>
+  :root {
+    --bg: #111217; --card: #181b1f; --border: #2c3235; --text: #ccccdc;
+    --muted: #8e8e9e; --accent: #3d71d9; --accent2: #6e9fff; --ok: #4caf7d; --warn: #f2cc0c;
+    --stage-w: 320px; --stage-h: 200px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 14px; line-height: 1.45; }
+  a { color: var(--accent2); }
+  code, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px;
+    background: #0b0c10; border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; }
+
+  /* ---- top bar ---- */
+  .topbar { position: sticky; top: 0; z-index: 50; background: rgba(17,18,23,.94); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; }
+  .topbar h1 { font-size: 16px; font-weight: 600; margin: 0 16px 0 0; letter-spacing: .2px; }
+  .topbar h1 span { color: var(--muted); font-weight: 400; }
+  .ctl { display: flex; align-items: center; gap: 8px; }
+  .ctl label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .4px; }
+  input[type=range] { width: 280px; accent-color: var(--accent); }
+  select, button { background: #22252b; color: var(--text); border: 1px solid var(--border); border-radius: 4px;
+    padding: 5px 8px; font: inherit; font-size: 13px; }
+  button { cursor: pointer; } button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .readout { font-variant-numeric: tabular-nums; min-width: 60px; font-weight: 600; }
+  .days { background: #22252b; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-variant-numeric: tabular-nums; }
+  .days b { color: var(--warn); }
+
+  /* ---- grid of cards ---- */
+  .intro { padding: 16px 20px 0; color: var(--muted); max-width: 1100px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, 344px); gap: 16px; padding: 16px 20px 32px; justify-content: start; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 11px; display: flex; flex-direction: column; gap: 8px; }
+  .card header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .card h2 { font-size: 14px; font-weight: 600; margin: 0; }
+  .card .num { color: var(--muted); font-size: 11px; }
+  .card .desc { font-size: 12.5px; color: #b4b4c4; margin: 0; min-height: 34px; }
+  .card .meta { display: flex; flex-wrap: wrap; gap: 6px; font-size: 11px; }
+  .pill { border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; color: var(--muted); }
+  .pill.gif-yes { border-color: rgba(76,175,125,.5); color: var(--ok); }
+  .pill.gif-no { border-color: rgba(242,80,80,.5); color: #f27373; }
+  .pill.gif-part { border-color: rgba(242,204,12,.5); color: var(--warn); }
+  .stage { position: relative; width: var(--stage-w); height: var(--stage-h); overflow: hidden; border-radius: 4px;
+    background: #0b0c10; border: 1px solid #22252b; }
+  .stage > img, .stage > canvas, .stage > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .pbar { height: 3px; background: #22252b; border-radius: 2px; overflow: hidden; }
+  .pbar i { display: block; height: 100%; background: var(--accent); width: 0; }
+
+  /* tile-based modes */
+  .tile { position: absolute; background-image: var(--img); background-size: var(--stage-w) var(--stage-h); background-repeat: no-repeat;
+    will-change: opacity, transform; }
+  .tile.hidden { background-image: none; background-color: #1f2228; box-shadow: inset 0 0 0 1px #2c3235; }
+  .jig .tile { transition: opacity .45s ease, background-color .45s; }
+  .shuf .tile { transition: transform .55s cubic-bezier(.3,.9,.3,1); box-shadow: inset 0 0 0 1px rgba(0,0,0,.35); }
+  .shuf .tile.solved { box-shadow: none; }
+  .mos .tile { transition: opacity .25s linear; }
+
+  /* advent */
+  .adv { perspective: 600px; }
+  .door { position: absolute; transform-style: preserve-3d; }
+  .door .back { position: absolute; inset: 0; background-image: var(--img); background-size: var(--stage-w) var(--stage-h); background-repeat: no-repeat; }
+  .door .panel { position: absolute; inset: 0; background: linear-gradient(135deg, #2a3a63, #1b2540); border: 1px solid #3a4c7a;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #c8d4ff;
+    transform-origin: left center; transition: transform .7s cubic-bezier(.4,.2,.2,1); backface-visibility: hidden; }
+  .door.open .panel { transform: rotateY(-125deg); }
+  .door.next .panel { box-shadow: inset 0 0 0 2px var(--warn); color: #fff; }
+
+  /* notes */
+  .notes { padding: 8px 20px 60px; max-width: 980px; }
+  .notes h2 { font-size: 16px; border-top: 1px solid var(--border); padding-top: 18px; }
+  .notes h3 { font-size: 13.5px; margin: 18px 0 6px; color: #e0e0ee; }
+  .notes p, .notes li { font-size: 13px; color: #b4b4c4; }
+  .notes pre { background: #0b0c10; border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; font-size: 12px; overflow: auto; color: #d6d6e6; }
+  table { border-collapse: collapse; font-size: 12.5px; } td, th { border: 1px solid var(--border); padding: 4px 8px; text-align: left; }
+  th { color: var(--muted); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Reveal <span>— reveal-mode catalog</span></h1>
+  <div class="ctl">
+    <label for="prog">Progress</label>
+    <input type="range" id="prog" min="0" max="100" value="35" step="1">
+    <span class="readout" id="progOut">35%</span>
+  </div>
+  <div class="ctl"><span class="days" id="days"></span></div>
+  <div class="ctl">
+    <label for="ease">Easing</label>
+    <select id="ease">
+      <option value="linear">linear</option>
+      <option value="ease-in">ease-in</option>
+      <option value="ease-out">ease-out</option>
+      <option value="steps7">steps(7)</option>
+    </select>
+    <span class="readout" id="easeOut" style="color:var(--muted);font-weight:400;font-size:12px"></span>
+  </div>
+  <div class="ctl">
+    <button id="play" class="primary">Play 0→100</button>
+    <button id="reset">Reset</button>
+  </div>
+</div>
+
+<p class="intro">Each card renders the <em>same</em> placeholder scene with one reveal mode at the current (eased) progress <code>p</code>.
+  Progress is the elapsed fraction between the start date and the reveal date; this page assumes a 30-day window.
+  Tags show the implementation technique and whether animated GIFs keep playing without re-encoding.</p>
+
+<div class="grid" id="grid"></div>
+
+<div class="notes" id="notes">
+  <h2>Design notes</h2>
+
+  <h3>Recommended default mode</h3>
+  <p><strong>Blur</strong> (<code>blur</code>). It is the most legible "getting closer" metaphor, it works on photos, text and GIFs alike,
+    it degrades gracefully at any panel size, and it is a single CSS filter (no layout, no canvas, no per-frame work).
+    Pixelate is the fun alternative but needs canvas and therefore loses GIF animation; Jigsaw is the best "calendar feel" for long windows.</p>
+
+  <h3>Best modes for animated GIFs</h3>
+  <p>Anything where the original <code>&lt;img&gt;</code> stays in the DOM and is only filtered, clipped or masked keeps GIF playback for free:
+    Fade, Blur, Brightness, Color, Wipe, Iris, Scanlines, Scratch-off (SVG/CSS mask), and the tile modes (Jigsaw, Shuffle, Mosaic, Advent)
+    because each tile is just <code>background-image</code> of the same URL with a <code>background-position</code> offset (the browser shares the
+    decoded animation across tiles). <strong>Pixelate</strong> is the only canvas mode: for GIFs it would need frame decoding
+    (<code>ImageDecoder</code> API / gifuct-js) or a fallback to Mosaic/Jigsaw. A cheap pixelate approximation that keeps GIFs is
+    <code>image-rendering: pixelated</code> on a downscaled <code>&lt;img&gt;</code> wrapped in an upscaling transform; it is lower quality but worth
+    offering as the GIF fallback.</p>
+
+  <h3>Recommended easing default</h3>
+  <p><code>ease-in</code> (quadratic). Linear reveals too much too early for Blur/Pixelate (the image is recognisable at ~40%), which kills
+    the suspense; ease-in keeps the image obscured for most of the window and then "rushes" to the finish. For calendar-style modes
+    (Advent, Jigsaw) use <code>steps(days)</code> so a visible change happens exactly once per day and users have a reason to come back.
+    Expose easing as a panel option with those two defaults per mode.</p>
+
+  <h3>Mode enum proposal (panel options)</h3>
+  <pre>// panel option `mode`  (RevealMode)
+'fade' | 'blur' | 'pixelate' | 'jigsaw' | 'shuffle' | 'wipe' | 'iris' |
+'scratch' | 'blinds' | 'mosaic' | 'brightness' | 'color' | 'advent' |
+'puzzle' | 'combo'
+
+// related options
+easing:    'linear' | 'ease-in' | 'ease-out' | 'steps'    // steps = one step per day
+direction: 'ltr' | 'rtl' | 'ttb' | 'btt' | 'center'     // wipe / blinds / iris
+grid:      { cols: number, rows: number }                 // jigsaw / shuffle / mosaic / puzzle
+seed:      number                                          // tile order; default = hash(reveal date)
+combo:     RevealMode[]                                    // stack of modes, applied in order
+intensity: number                                          // max blur px / max block px / etc.</pre>
+
+  <h3>Other notes</h3>
+  <ul>
+    <li>Seed every random order from the reveal date (or a user-provided seed) so the panel looks identical on every dashboard refresh and for every viewer.</li>
+    <li>All modes are written as <code>render(container, p)</code> and are idempotent: they build DOM once and update on subsequent calls, so a Grafana panel can call them on every data refresh without flicker.</li>
+    <li>Rendering is resolution-independent except Pixelate/Puzzle which use the stage size in px; the plugin should read the panel size and re-render on resize.</li>
+    <li>Combo is just function composition; the engine should allow an ordered array of modes with each mode receiving the same <code>p</code> (or a per-mode remapped <code>p</code> range).</li>
+  </ul>
+</div>
+
+<script>
+/* ===================================================================
+   Placeholder scene (inline SVG, no network).  Used as data URL for <img>,
+   CSS background-image and canvas drawImage.
+   =================================================================== */
+const W = 320, H = 200;
+const SCENE_SVG = `
+<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a6b"/><stop offset="1" stop-color="#ff7b54"/></linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4fc26b"/><stop offset="1" stop-color="#1f7a3a"/></linearGradient>
+  </defs>
+  <rect width="${W}" height="${H}" fill="url(#sky)"/>
+  <circle cx="250" cy="70" r="32" fill="#ffd93d"/>
+  <circle cx="250" cy="70" r="40" fill="#ffd93d" opacity=".25"/>
+  <polygon points="0,150 60,70 120,150" fill="#5b5f8f"/>
+  <polygon points="60,70 48,88 72,88" fill="#fff"/>
+  <polygon points="90,150 160,55 230,150" fill="#3f4473"/>
+  <polygon points="160,55 146,76 174,76" fill="#fff"/>
+  <ellipse cx="160" cy="200" rx="230" ry="62" fill="url(#hill)"/>
+  <rect x="40" y="128" width="54" height="42" fill="#d94b4b"/>
+  <polygon points="34,130 67,102 100,130" fill="#8b2f2f"/>
+  <rect x="60" y="146" width="14" height="24" fill="#2b1d10"/>
+  <rect x="46" y="136" width="10" height="10" fill="#ffe08a"/>
+  <rect x="79" y="136" width="10" height="10" fill="#ffe08a"/>
+  <rect x="246" y="140" width="10" height="34" fill="#5c3a1e"/>
+  <circle cx="251" cy="128" r="24" fill="#2f9e4f"/>
+  <circle cx="238" cy="140" r="14" fill="#3bbf5f"/>
+  <circle cx="266" cy="138" r="14" fill="#3bbf5f"/>
+  <circle cx="200" cy="176" r="5" fill="#ff5fa2"/><circle cx="214" cy="183" r="4" fill="#ffd93d"/><circle cx="186" cy="185" r="4" fill="#5fd0ff"/>
+  <text x="160" y="46" font-family="Inter, system-ui, sans-serif" font-size="36" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="4" style="paint-order:stroke" stroke="#1b2a6b" stroke-width="6">REVEAL</text>
+  <text x="160" y="188" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle" opacity=".9">30 DAYS · 2026</text>
+</svg>`;
+const IMG_URL = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(SCENE_SVG.trim());
+document.documentElement.style.setProperty('--img', `url("${IMG_URL}")`);
+
+// Decoded copy for canvas-based modes.
+const IMG = new Image();
+let imgReady = false;
+IMG.onload = () => { imgReady = true; renderAll(); };
+IMG.src = IMG_URL;
+
+/* ===================================================================
+   Utilities
+   =================================================================== */
+function mulberry32(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+// Seeded Fisher–Yates permutation of 0..n-1
+function permutation(n, seed) {
+  const rnd = mulberry32(seed), a = Array.from({ length: n }, (_, i) => i);
+  for (let i = n - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+const clamp01 = v => Math.max(0, Math.min(1, v));
+const el = (tag, cls, parent) => { const e = document.createElement(tag); if (cls) e.className = cls; if (parent) parent.appendChild(e); return e; };
+// Idempotent state: build once per container, update thereafter.
+function state(container, build) { return container._state || (container._state = build(container)); }
+function addImg(container) { const i = el('img', null, container); i.src = IMG_URL; i.alt = ''; return i; }
+function setMask(node, value) { node.style.maskImage = value; node.style.webkitMaskImage = value; }
+
+// Tile helpers shared by Jigsaw / Shuffle / Mosaic / Advent
+function makeTiles(container, cols, rows, extraCls) {
+  const tw = W / cols, th = H / rows, tiles = [];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+    const t = el('div', 'tile' + (extraCls ? ' ' + extraCls : ''), container);
+    t.style.width = tw + 'px'; t.style.height = th + 'px';
+    t.style.left = (c * tw) + 'px'; t.style.top = (r * th) + 'px';
+    t.style.backgroundPosition = `${-c * tw}px ${-r * th}px`;
+    tiles.push(t);
+  }
+  return { tiles, tw, th, cols, rows };
+}
+
+/* ===================================================================
+   The catalog.  Each mode: { id, name, desc, impl, gifSafe, render(container, p) }
+   gifSafe: true | false | 'partial'
+   =================================================================== */
+const modes = [
+  {
+    id: 'fade', name: 'Fade', impl: 'CSS opacity', gifSafe: true,
+    desc: 'Opacity ramps from 0 to 1. Simple, calm, works for anything; weakest suspense.',
+    render(c, p) { const s = state(c, () => ({ img: addImg(c) })); s.img.style.opacity = p; }
+  },
+  {
+    id: 'blur', name: 'Blur', impl: 'CSS filter: blur()', gifSafe: true,
+    desc: 'Gaussian blur from 40px to 0. Shapes/colours emerge first, details last. Recommended default.',
+    render(c, p) {
+      const s = state(c, () => { const img = addImg(c); img.style.transform = 'scale(1.08)'; return { img }; });
+      const b = (1 - p) * 40; s.img.style.filter = `blur(${b.toFixed(2)}px)`;
+      s.img.style.transform = `scale(${(1 + 0.08 * (1 - p)).toFixed(3)})`; // hide blurred edge fringe
+    }
+  },
+  {
+    id: 'pixelate', name: 'Pixelate', impl: 'canvas down/upscale, imageSmoothing off', gifSafe: false,
+    desc: 'Block size from 40px down to 1px. Retro and very readable as "resolution increases".',
+    render(c, p) {
+      const s = state(c, () => { const cv = el('canvas', null, c); cv.width = W; cv.height = H; return { cv, off: document.createElement('canvas') }; });
+      if (!imgReady) return;
+      const block = Math.max(1, Math.round((1 - p) * 40));
+      const ctx = s.cv.getContext('2d');
+      ctx.clearRect(0, 0, W, H);
+      if (block === 1) { ctx.imageSmoothingEnabled = true; ctx.drawImage(IMG, 0, 0, W, H); return; }
+      const sw = Math.max(1, Math.round(W / block)), sh = Math.max(1, Math.round(H / block));
+      s.off.width = sw; s.off.height = sh;
+      const o = s.off.getContext('2d'); o.imageSmoothingEnabled = true; o.drawImage(IMG, 0, 0, sw, sh);
+      ctx.imageSmoothingEnabled = false; ctx.drawImage(s.off, 0, 0, sw, sh, 0, 0, W, H);
+    }
+  },
+  {
+    id: 'jigsaw', name: 'Jigsaw / Tile puzzle', impl: 'CSS background-position tiles', gifSafe: true,
+    desc: '8×5 grid; tiles appear in a seeded pseudo-random order. Unrevealed tiles are dark placeholders.',
+    render(c, p) {
+      const s = state(c, () => { c.classList.add('jig'); const t = makeTiles(c, 8, 5); t.rank = permutation(40, 101); return t; });
+      const n = s.tiles.length, shown = Math.round(p * n);
+      s.tiles.forEach((t, i) => t.classList.toggle('hidden', s.rank[i] >= shown));
+    }
+  },
+  {
+    id: 'shuffle', name: 'Shuffle puzzle', impl: 'CSS transform tiles (sliding)', gifSafe: true,
+    desc: 'Tiles start scrambled; each day a tile slides home (swapping with whatever occupied its slot), in seeded order.',
+    render(c, p) {
+      const s = state(c, () => {
+        c.classList.add('shuf'); const t = makeTiles(c, 6, 4);
+        t.tiles.forEach(x => { x.style.left = '0'; x.style.top = '0'; });
+        t.order = permutation(24, 202); t.start = permutation(24, 303); return t;
+      });
+      const n = s.tiles.length, solved = Math.round(p * n), slot = s.start.slice();
+      for (let i = 0; i < solved; i++) {
+        const t = s.order[i]; if (slot[t] === t) continue;
+        const u = slot.indexOf(t); slot[u] = slot[t]; slot[t] = t;
+      }
+      const solvedSet = new Set(s.order.slice(0, solved));
+      s.tiles.forEach((tile, i) => {
+        const sl = slot[i], col = sl % s.cols, row = Math.floor(sl / s.cols);
+        tile.style.transform = `translate(${col * s.tw}px, ${row * s.th}px)`;
+        tile.classList.toggle('solved', solvedSet.has(i));
+      });
+    }
+  },
+  {
+    id: 'wipe', name: 'Wipe / Curtain', impl: 'CSS clip-path: inset()', gifSafe: true,
+    desc: 'Left→right wipe with a soft leading edge. Variants: rtl, top→bottom, bottom→top, split-curtain from centre.',
+    render(c, p) {
+      const s = state(c, () => {
+        const base = addImg(c); base.style.filter = 'brightness(.12) saturate(.3)'; // dim preview of what\'s to come
+        const img = addImg(c); const edge = el('div', null, c);
+        Object.assign(edge.style, { position: 'absolute', top: 0, bottom: 0, width: '2px', background: '#fff', opacity: .7, boxShadow: '0 0 12px 3px rgba(255,255,255,.6)' });
+        return { img, edge };
+      });
+      s.img.style.clipPath = `inset(0 ${((1 - p) * 100).toFixed(2)}% 0 0)`;
+      s.edge.style.left = `calc(${(p * 100).toFixed(2)}% - 1px)`; s.edge.style.display = p > 0 && p < 1 ? 'block' : 'none';
+    }
+  },
+  {
+    id: 'iris', name: 'Iris / Spotlight', impl: 'CSS clip-path: circle()', gifSafe: true,
+    desc: 'Circular aperture growing from the centre (72% radius covers the corners). Could follow a seeded off-centre point.',
+    render(c, p) {
+      const s = state(c, () => { const base = addImg(c); base.style.filter = 'brightness(.1)'; return { img: addImg(c) }; });
+      s.img.style.clipPath = `circle(${(p * 72).toFixed(2)}% at 50% 50%)`;
+    }
+  },
+  {
+    id: 'scratch', name: 'Scratch-off', impl: 'SVG <mask> of seeded strokes', gifSafe: true,
+    desc: 'A foil cover is scratched away by seeded random strokes that accumulate as p rises; the last stroke draws in partially.',
+    render(c, p) {
+      const NS = 'http://www.w3.org/2000/svg', STROKES = 70;
+      const s = state(c, () => {
+        addImg(c);
+        const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); c.appendChild(svg);
+        svg.innerHTML = `<defs>
+          <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8d8f99"/><stop offset=".5" stop-color="#c3c5cf"/><stop offset="1" stop-color="#6f717b"/></linearGradient>
+          <mask id="scr"><rect width="${W}" height="${H}" fill="#fff"/><g id="strokes" fill="none" stroke="#000" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"></g></mask>
+        </defs>
+        <g id="cover" mask="url(#scr)"><rect width="${W}" height="${H}" fill="url(#foil)"/>
+          <text x="160" y="106" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="22" fill="#4a4c55" letter-spacing="3">SCRATCH HERE</text></g>`;
+        const g = svg.querySelector('#strokes'), rnd = mulberry32(404), paths = [];
+        for (let i = 0; i < STROKES; i++) {
+          let x = rnd() * W, y = rnd() * H, d = `M${x.toFixed(1)} ${y.toFixed(1)}`;
+          const segs = 2 + Math.floor(rnd() * 4);
+          for (let k = 0; k < segs; k++) { x += (rnd() - .5) * 90; y += (rnd() - .5) * 60; d += ` L${x.toFixed(1)} ${y.toFixed(1)}`; }
+          const path = document.createElementNS(NS, 'path'); path.setAttribute('d', d); path.setAttribute('pathLength', '1');
+          path.setAttribute('stroke-dasharray', '1'); g.appendChild(path); paths.push(path);
+        }
+        return { paths, cover: svg.querySelector('#cover') };
+      });
+      const total = p * STROKES;
+      s.paths.forEach((path, i) => { const f = clamp01(total - i); path.setAttribute('stroke-dashoffset', (1 - f).toFixed(3)); path.style.display = f > 0 ? '' : 'none'; });
+      s.cover.style.opacity = p >= 0.995 ? 0 : 1; s.cover.style.transition = 'opacity .4s';
+    }
+  },
+  {
+    id: 'blinds', name: 'Scanlines / Venetian blinds', impl: 'CSS mask: repeating-linear-gradient', gifSafe: true,
+    desc: 'Horizontal strips (14px pitch) grow in height until they merge. Vertical variant = rotate the gradient.',
+    render(c, p) {
+      const s = state(c, () => { const base = addImg(c); base.style.filter = 'brightness(.1)'; return { img: addImg(c) }; });
+      const pitch = 14, open = (p * pitch).toFixed(2);
+      setMask(s.img, `repeating-linear-gradient(to bottom, #000 0 ${open}px, transparent ${open}px ${pitch}px)`);
+    }
+  },
+  {
+    id: 'mosaic', name: 'Mosaic dissolve', impl: 'CSS tiles + seeded per-cell threshold', gifSafe: true,
+    desc: '16×10 cells, each with a seeded threshold; a cell fades in over a short window once p passes it (noise-dissolve look).',
+    render(c, p) {
+      const s = state(c, () => { c.classList.add('mos'); const t = makeTiles(c, 16, 10); const rnd = mulberry32(505); t.thr = t.tiles.map(() => rnd()); return t; });
+      const soft = 0.12; // width of the fade window per cell
+      s.tiles.forEach((t, i) => { t.style.opacity = clamp01((p * (1 + soft) - s.thr[i]) / soft); });
+    }
+  },
+  {
+    id: 'brightness', name: 'Brightness / Darkness', impl: 'CSS filter: brightness() contrast()', gifSafe: true,
+    desc: 'Starts almost black and brightens; contrast rises with it so the first glimpses are murky silhouettes.',
+    render(c, p) {
+      const s = state(c, () => ({ img: addImg(c) }));
+      s.img.style.filter = `brightness(${(0.03 + 0.97 * p).toFixed(3)}) contrast(${(0.4 + 0.6 * p).toFixed(3)})`;
+    }
+  },
+  {
+    id: 'color', name: 'Color', impl: 'CSS filter: grayscale() saturate()', gifSafe: true,
+    desc: 'Monochrome and washed out to full colour. Low suspense but pretty; good as a secondary layer in Combo.',
+    render(c, p) {
+      const s = state(c, () => ({ img: addImg(c) }));
+      s.img.style.filter = `grayscale(${(1 - p).toFixed(3)}) saturate(${(0.15 + 0.85 * p).toFixed(3)}) contrast(${(0.8 + 0.2 * p).toFixed(3)})`;
+    }
+  },
+  {
+    id: 'advent', name: 'Advent / Countdown doors', impl: 'CSS 3D door panels over background tiles', gifSafe: true,
+    desc: '30 numbered doors in a seeded layout; door n swings open on day n. The next door is highlighted. Calendar-style.',
+    render(c, p) {
+      const DAYS = 30;
+      const s = state(c, () => {
+        c.classList.add('adv'); const t = makeTiles(c, 6, 5, 'door');
+        t.tiles.forEach(d => { d.classList.remove('tile'); const back = el('div', 'back', d); back.style.backgroundPosition = d.style.backgroundPosition; el('div', 'panel', d); });
+        const layout = permutation(DAYS, 606); t.tiles.forEach((d, i) => { d.dataset.n = layout[i] + 1; d.querySelector('.panel').textContent = layout[i] + 1; });
+        return t;
+      });
+      const opened = Math.floor(p * DAYS + 1e-9);
+      s.tiles.forEach(d => { const n = +d.dataset.n; d.classList.toggle('open', n <= opened); d.classList.toggle('next', n === opened + 1); });
+    }
+  },
+  {
+    id: 'puzzle', name: 'Puzzle piece outlines', impl: 'inline SVG <clipPath> jigsaw shapes', gifSafe: 'partial',
+    desc: 'Jigsaw with real tab-and-blank piece shapes (seeded). Pieces drop in by seeded order; missing pieces show their outline.',
+    render(c, p) {
+      const NS = 'http://www.w3.org/2000/svg', cols = 6, rows = 4;
+      const s = state(c, () => {
+        const rnd = mulberry32(707), tw = W / cols, th = H / rows;
+        // hEdge[r][col]: edge above row r; vEdge[r][col]: edge left of col. +1 = tab bulges down / right.
+        const hE = Array.from({ length: rows + 1 }, () => Array.from({ length: cols }, () => rnd() < .5 ? 1 : -1));
+        const vE = Array.from({ length: rows }, () => Array.from({ length: cols + 1 }, () => rnd() < .5 ? 1 : -1));
+        // Tab template along a unit edge (x along edge, y = toward +normal), symmetric about x=.5
+        const TAB = [[.36, 0], [.45, 0, .47, .03, .44, .08], [.40, .14, .30, .14, .30, .22], [.30, .33, .70, .33, .70, .22], [.70, .14, .60, .14, .56, .08], [.53, .03, .55, 0, .64, 0]];
+        function edge(ax, ay, bx, by, sgn) {
+          const dx = bx - ax, dy = by - ay, nx = -dy, ny = dx; // normal = d rotated +90deg (into the piece for CW traversal)
+          if (sgn === 0) return ` L${bx.toFixed(1)} ${by.toFixed(1)}`;
+          const P = (x, y) => `${(ax + dx * x + nx * y * sgn).toFixed(1)} ${(ay + dy * x + ny * y * sgn).toFixed(1)}`;
+          let d = ` L${P(TAB[0][0], TAB[0][1])}`;
+          for (let i = 1; i < TAB.length; i++) { const t = TAB[i]; d += ` C${P(t[0], t[1])} ${P(t[2], t[3])} ${P(t[4], t[5])}`; }
+          return d + ` L${bx.toFixed(1)} ${by.toFixed(1)}`;
+        }
+        const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); c.appendChild(svg);
+        let defs = '', pieces = '', outlines = '';
+        for (let r = 0; r < rows; r++) for (let col = 0; col < cols; col++) {
+          const x0 = col * tw, y0 = r * th, x1 = x0 + tw, y1 = y0 + th, id = `pz${r}_${col}`;
+          let d = `M${x0} ${y0}`;
+          d += edge(x0, y0, x1, y0, r === 0 ? 0 : hE[r][col]);             // top    (normal points down = into piece)
+          d += edge(x1, y0, x1, y1, col === cols - 1 ? 0 : -vE[r][col + 1]); // right  (normal points left = into piece)
+          d += edge(x1, y1, x0, y1, r === rows - 1 ? 0 : -hE[r + 1][col]);   // bottom (normal points up = into piece)
+          d += edge(x0, y1, x0, y0, col === 0 ? 0 : vE[r][col]);             // left   (normal points right = into piece)
+          d += ' Z';
+          defs += `<clipPath id="${id}"><path d="${d}"/></clipPath>`;
+          pieces += `<g class="pc" clip-path="url(#${id})"><image href="${IMG_URL}" width="${W}" height="${H}"/></g>`;
+          outlines += `<path class="ol" d="${d}" fill="#1f2228" stroke="#3a3f47" stroke-width="1"/>`;
+        }
+        svg.innerHTML = `<defs>${defs}</defs><g id="ol">${outlines}</g><g id="pcs">${pieces}</g>`;
+        svg.querySelectorAll('.pc image').forEach(i => i.setAttribute('preserveAspectRatio', 'none'));
+        const pcs = [...svg.querySelectorAll('.pc')], ols = [...svg.querySelectorAll('.ol')];
+        pcs.forEach(g => { g.style.transition = 'opacity .4s'; });
+        return { pcs, ols, rank: permutation(cols * rows, 808) };
+      });
+      const n = s.pcs.length, shown = Math.round(p * n);
+      s.pcs.forEach((g, i) => { const on = s.rank[i] < shown; g.style.opacity = on ? 1 : 0; s.ols[i].style.opacity = on ? 0 : 1; });
+    }
+  },
+  {
+    id: 'combo', name: 'Combo: Pixelate + Blur + Color', impl: 'canvas + CSS filters stacked', gifSafe: false,
+    desc: 'Modes stack: pixel blocks shrink while blur and desaturation lift on the same element. Each layer can map p to its own sub-range.',
+    render(c, p) {
+      // Reuse the pixelate renderer on the same container, then layer filters on its canvas.
+      modes.find(m => m.id === 'pixelate').render(c, clamp01(p * 1.25));            // pixelation finishes at p = 0.8
+      const cv = c.querySelector('canvas');
+      const blur = (1 - clamp01(p / 0.6)) * 14, sat = 0.1 + 0.9 * clamp01((p - 0.3) / 0.7); // blur gone at 0.6, colour from 0.3→1
+      cv.style.filter = `blur(${blur.toFixed(2)}px) grayscale(${(1 - sat).toFixed(3)}) saturate(${sat.toFixed(3)})`;
+    }
+  },
+];
+
+/* ===================================================================
+   Page wiring
+   =================================================================== */
+const easings = {
+  'linear': p => p,
+  'ease-in': p => p * p,
+  'ease-out': p => 1 - (1 - p) * (1 - p),
+  'steps7': p => Math.floor(p * 7 + 1e-9) / 7,
+};
+const DAYS_WINDOW = 30;
+const grid = document.getElementById('grid'), slider = document.getElementById('prog'), easeSel = document.getElementById('ease');
+const cards = modes.map((m, idx) => {
+  const card = el('div', 'card', grid);
+  card.innerHTML = `<header><h2>${m.name}</h2><span class="num">#${idx + 1} · ${m.id}</span></header>
+    <div class="stage" data-mode="${m.id}"></div>
+    <div class="pbar"><i></i></div>
+    <p class="desc">${m.desc}</p>
+    <div class="meta"><span class="pill">${m.impl}</span>
+      <span class="pill ${m.gifSafe === true ? 'gif-yes' : m.gifSafe === false ? 'gif-no' : 'gif-part'}">${m.gifSafe === true ? 'GIF animation kept' : m.gifSafe === false ? 'GIF needs frame decoding' : 'GIF: SVG <image> (or use CSS clip-path: path())'}</span></div>`;
+  return { mode: m, stage: card.querySelector('.stage'), bar: card.querySelector('.pbar i') };
+});
+
+function renderAll() {
+  const raw = +slider.value / 100, p = clamp01(easings[easeSel.value](raw));
+  document.getElementById('progOut').textContent = slider.value + '%';
+  document.getElementById('easeOut').textContent = `p = ${p.toFixed(3)}`;
+  const daysLeft = Math.ceil((1 - raw) * DAYS_WINDOW);
+  document.getElementById('days').innerHTML = daysLeft === 0 ? '<b>Revealed!</b> · day 30 of 30' : `Days until reveal: <b>${daysLeft}</b> · day ${DAYS_WINDOW - daysLeft} of ${DAYS_WINDOW}`;
+  for (const c of cards) { try { c.mode.render(c.stage, p); } catch (e) { console.error(c.mode.id, e); } c.bar.style.width = (p * 100) + '%'; }
+}
+// Exposed for automation / screenshots: setProgress(35)
+window.setProgress = v => { slider.value = v; renderAll(); };
+
+slider.addEventListener('input', renderAll);
+easeSel.addEventListener('change', renderAll);
+let playing = null;
+document.getElementById('play').addEventListener('click', () => {
+  if (playing) { cancelAnimationFrame(playing); playing = null; return; }
+  const t0 = performance.now(), dur = 8000;
+  const step = now => { const f = Math.min(1, (now - t0) / dur); slider.value = Math.round(f * 100); renderAll(); if (f < 1) playing = requestAnimationFrame(step); else playing = null; };
+  playing = requestAnimationFrame(step);
+});
+document.getElementById('reset').addEventListener('click', () => setProgress(0));
+// Automation hook: ?p=75&ease=ease-in sets the initial state (used for screenshots).
+{ const q = new URLSearchParams(location.search);
+  if (q.has('ease') && easings[q.get('ease')]) easeSel.value = q.get('ease');
+  if (q.has('p')) slider.value = clamp01(+q.get('p') / 100) * 100; }
+renderAll();
+</script>
+</body>
+</html>
