@@ -1,0 +1,10 @@
+# Read by osv-scanner (also run by the Grafana plugin validator) next to package-lock.json.
+# Only development tooling is affected; nothing listed here ships in the plugin bundle.
+
+[[IgnoredVulns]]
+id = "GHSA-vfj7-8cjw-p6xm"
+reason = "braces: stack-exhaustion DoS on deeply nested glob patterns. Dev-only (webpack/jest/eslint via micromatch); no patched release exists as of 2026-10-06. Globs come from our own config, never from users."
+
+[[IgnoredVulns]]
+id = "CVE-2026-93687"
+reason = "Same issue as GHSA-vfj7-8cjw-p6xm (braces)."

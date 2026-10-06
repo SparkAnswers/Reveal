@@ -76,5 +76,8 @@
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },
-  "packageManager": "npm@10.9.9"
+  "packageManager": "npm@10.9.9",
+  "overrides": {
+    "basic-ftp": "^6.2.2"
+  }
 }
