@@ -1,9 +1,10 @@
 # Reveal panel plugin - everything runs in Docker; never run npm on the host.
 #
-#   make build     -> `build` service  : production webpack build into ./dist
-#   make up        -> `grafana` service: Grafana 12.x with ./dist and ./provisioning mounted
-#   make dev       -> `dev` service    : webpack watch + livereload (run next to `make up`)
-#   make test / typecheck / lint / validate / package
+#   docker compose up          -> builds the plugin (`build` service) then starts Grafana 12.x
+#                                 with ./dist and ./provisioning mounted  (same as `make up`)
+#   make build / dev / test / typecheck / lint / validate / package
+#                              -> the Node tool services below (profile "tools", so a plain
+#                                 `docker compose up` never starts them)
 #
 # The Node tool services share one image (node:22-alpine), mount the repo at /app and keep
 # node_modules in a named volume so the host tree never sees platform-specific binaries.
@@ -46,6 +47,7 @@ services:
   # package-lock.json; fall back to `npm install` (which also creates the lockfile) if absent.
   install:
     <<: *npm
+    profiles: [tools]
     command: >
       sh -c 'if [ -f package-lock.json ]; then npm ci; else echo "package-lock.json missing - running npm install (commit the generated lockfile)"; npm install; fi'
 
@@ -56,25 +58,30 @@ services:
 
   dev:
     <<: *npm
+    profiles: [tools]
     command: npm run dev
     ports:
       - 35729:35729/tcp # webpack-livereload-plugin; Grafana's index.html loads localhost:35729/livereload.js
 
   test:
     <<: *npm
+    profiles: [tools]
     command: npm run test:ci
 
   typecheck:
     <<: *npm
+    profiles: [tools]
     command: npm run typecheck
 
   lint:
     <<: *npm
+    profiles: [tools]
     command: npm run lint
 
   # Zips ./dist as <plugin-id>-<version>.zip in the repo root (what you upload / sign).
   package:
     <<: *npm
+    profiles: [tools]
     command: >
       sh -c 'set -e; apk add --no-cache zip >/dev/null;
       test -f dist/plugin.json || { echo "dist/plugin.json missing - run make build first"; exit 1; };
@@ -87,6 +94,7 @@ services:
   # (procedure from .config/AGENTS/skills/validate-plugin.md).
   validate:
     <<: *npm
+    profiles: [tools]
     command: >
       sh -c 'set -e; apk add --no-cache zip >/dev/null;
       test -f dist/plugin.json || { echo "dist/plugin.json missing - run make build first"; exit 1; };

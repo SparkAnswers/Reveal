@@ -6,9 +6,9 @@ or a surprise that pops up in different places over the day.
 
 ## Screenshots
 
-![Four reveal modes on a dashboard](https://raw.githubusercontent.com/SparkAnswers/Reveal/main/imgs/reveal-dashboard.png)
-![Panel editor with live preview](https://raw.githubusercontent.com/SparkAnswers/Reveal/main/imgs/panel-editor.png)
-![Two panels alternating every minute](https://raw.githubusercontent.com/SparkAnswers/Reveal/main/imgs/alternating-dashboard.png)
+![Four reveal modes on a dashboard](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/reveal-dashboard.png)
+![Panel editor with live preview](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/panel-editor.png)
+![Two panels alternating every minute](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/alternating-dashboard.png)
 
 ## Features
 
@@ -64,4 +64,4 @@ dashboard JSON (image + dates + mode) -> timer -> progress -> easing -> reveal m
 
 ## Feedback and contributions
 
-Issues and pull requests are welcome at https://github.com/SparkAnswers/Reveal.
+Issues and pull requests are welcome at https://github.com/SparkAnswers/reveal.

@@ -17,15 +17,15 @@
     "links": [
       {
         "name": "Website",
-        "url": "https://github.com/SparkAnswers/Reveal"
+        "url": "https://github.com/SparkAnswers/reveal"
       },
       {
         "name": "License",
-        "url": "https://github.com/SparkAnswers/Reveal/blob/main/LICENSE"
+        "url": "https://github.com/SparkAnswers/reveal/blob/main/LICENSE"
       },
       {
         "name": "Report an issue",
-        "url": "https://github.com/SparkAnswers/Reveal/issues"
+        "url": "https://github.com/SparkAnswers/reveal/issues"
       }
     ],
     "screenshots": [

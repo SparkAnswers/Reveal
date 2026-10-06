@@ -13,9 +13,9 @@ Progressively reveals an image or GIF as a date approaches, or on a repeating sc
 ## Quick Start (Provides Grafana and Reveal via Docker.)
 
 ```bash
-git clone https://github.com/SparkAnswers/Reveal
-cd Reveal
-make up
+git clone https://github.com/SparkAnswers/reveal
+cd reveal
+docker compose up
 
 # Grafana:   http://localhost:3000/   (anonymous viewer; admin / admin to edit)
 # Demos:     /d/reveal-demo  and  /d/reveal-alternating
@@ -69,7 +69,7 @@ Every seeded order (tiles, doors, scratches, random cycles) derives from the rev
 ## Development
 
 **Developing the plugin?** All builds run in Docker; nothing calls npm on the host.
-`make dev` runs webpack in watch mode with livereload next to `make up`.
+`make dev` runs webpack in watch mode with livereload next to `docker compose up`.
 
 ## Architecture
 

@@ -55,7 +55,7 @@ COPY --from=build /app/dist /dist
 # ---------------------------------------------------------------------------
 FROM grafana/${GRAFANA_IMAGE}:${GRAFANA_VERSION} AS runtime
 LABEL org.opencontainers.image.title="Reveal panel demo (sparkanswers-reveal-panel)" \
-      org.opencontainers.image.source="https://github.com/SparkAnswers/Reveal" \
+      org.opencontainers.image.source="https://github.com/SparkAnswers/reveal" \
       org.opencontainers.image.licenses="Apache-2.0"
 
 # Development/demo convenience ONLY. Do NOT expose this image publicly:
