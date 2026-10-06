@@ -119,4 +119,33 @@ while (Date.now() - g0 < 6_000) {
 console.log('captured', g, 'ghost frames');
 await shot('ghost-dashboard.png');
 
+// 6. Memory demo: film the pixelate reveal on the next cycle (it runs 0-20 s into an even minute).
+await open('reveal-memory');
+const memFrames = path.resolve('.cache/memory-frames');
+fs.rmSync(memFrames, { recursive: true, force: true });
+fs.mkdirSync(memFrames, { recursive: true });
+const wait2 = untilNextEvenMinute();
+console.log(`waiting ${Math.round(wait2 / 1000)}s for the memory cycle`);
+await sleep(wait2 - 500);
+const mem = await panel('Memory reveal').boundingBox();
+const bw = await panel('Bandwidth per channel').boundingBox();
+const memRegion = {
+  x: Math.floor(mem.x),
+  y: Math.floor(mem.y),
+  width: Math.ceil(bw.x + bw.width - mem.x),
+  height: Math.ceil(mem.height),
+};
+const m0 = Date.now();
+let m = 0;
+while (Date.now() - m0 < 23_000) {
+  await page.screenshot({
+    path: path.join(memFrames, `f${String(m).padStart(3, '0')}.png`),
+    clip: memRegion,
+    scale: 'css',
+  });
+  m++;
+  await sleep(400);
+}
+console.log('captured', m, 'memory frames');
+
 await browser.close();

@@ -11,7 +11,7 @@ or a surprise that pops up in different places over the day.
 ![A motorcycle blurring into view on a scheduled reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/bike-reveal.gif)
 ![A GIF ghost popping up in a random corner and waving once revealed](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/ghost-demo.gif)
 ![Motorcycle demo with a scheduled bike reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/motorcycle-dashboard.png)
-![Memory demo with a scheduled memory reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/memory-dashboard.png)
+![Memory demo: the module pixelates into view](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/memory-reveal.gif)
 
 ## Features
 

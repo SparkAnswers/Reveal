@@ -13,8 +13,8 @@ Progressively reveals an image or GIF as a date approaches, or on a repeating sc
   <img src="imgs/memory-dashboard.png" alt="Memory demo with a scheduled memory reveal" width="30%">
 </p>
 <p>
-  <img src="imgs/ghost-dashboard.png" alt="Ghost demo: a GIF ghost pops up in a random corner each minute" width="30%">
-  <img src="imgs/ghost-demo.gif" alt="The ghost waving once revealed" width="30%">
+  <img src="imgs/ghost-demo.gif" alt="Ghost demo: a GIF ghost pops up in a random corner each minute and waves" width="30%">
+  <img src="imgs/memory-reveal.gif" alt="Memory demo: the module pixelates into view" width="30%">
   <img src="imgs/panel-editor.png" alt="Panel editor with live preview" width="30%">
 </p>
 
