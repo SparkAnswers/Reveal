@@ -202,7 +202,7 @@ jobs:
       - name: Docker logs
         if: ${{ always() && steps.run-tests.outcome == 'failure' }}
         run: |
-          docker logs sparks1223-reveal-panel >& grafana-server.log
+          docker logs sparkanswers-reveal-panel >& grafana-server.log
 
       - name: Stop grafana docker
         run: docker compose down

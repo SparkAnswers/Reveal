@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 #
-# Reveal panel plugin (sparks1223-reveal-panel) - multi-stage build.
+# Reveal panel plugin (sparkanswers-reveal-panel) - multi-stage build.
 #
 #   deps     : install npm dependencies (node:22-alpine)
 #   build    : typecheck + lint + unit tests + production webpack build
@@ -54,21 +54,21 @@ COPY --from=build /app/dist /dist
 
 # ---------------------------------------------------------------------------
 FROM grafana/${GRAFANA_IMAGE}:${GRAFANA_VERSION} AS runtime
-LABEL org.opencontainers.image.title="Reveal panel demo (sparks1223-reveal-panel)" \
-      org.opencontainers.image.source="https://github.com/sparks1223/Reveal" \
+LABEL org.opencontainers.image.title="Reveal panel demo (sparkanswers-reveal-panel)" \
+      org.opencontainers.image.source="https://github.com/SparkAnswers/Reveal" \
       org.opencontainers.image.licenses="Apache-2.0"
 
 # Development/demo convenience ONLY. Do NOT expose this image publicly:
 # anonymous visitors are organisation Admins.
-ENV GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=sparks1223-reveal-panel \
+ENV GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=sparkanswers-reveal-panel \
     GF_AUTH_ANONYMOUS_ENABLED=true \
     GF_AUTH_ANONYMOUS_ORG_ROLE=Admin \
     GF_AUTH_BASIC_ENABLED=false \
     GF_DEFAULT_APP_MODE=development \
-    GF_LOG_FILTERS=plugin.sparks1223-reveal-panel:debug
+    GF_LOG_FILTERS=plugin.sparkanswers-reveal-panel:debug
 
 # Grafana images run as uid 472 (user "grafana"), gid 0.
-COPY --from=build --chown=472:0 /app/dist /var/lib/grafana/plugins/sparks1223-reveal-panel
+COPY --from=build --chown=472:0 /app/dist /var/lib/grafana/plugins/sparkanswers-reveal-panel
 COPY --chown=472:0 provisioning /etc/grafana/provisioning
 
 EXPOSE 3000

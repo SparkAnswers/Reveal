@@ -5,13 +5,13 @@
 #   make dev          webpack watch + livereload (use in a second terminal next to `make up`)
 #   make check        typecheck + lint + unit tests
 #   make validate     Grafana plugin-validator against a zip of ./dist
-#   make package      ./sparks1223-reveal-panel-<version>.zip
+#   make package      ./sparkanswers-reveal-panel-<version>.zip
 #   make image        one-image demo: docker build --target runtime -t reveal-grafana .
 
 .RECIPEPREFIX = >
 SHELL := /bin/sh
 
-PLUGIN_ID   := sparks1223-reveal-panel
+PLUGIN_ID   := sparkanswers-reveal-panel
 IMAGE_TAG   ?= reveal-grafana
 COMPOSE     ?= docker compose
 RUN         := $(COMPOSE) run --rm --no-deps

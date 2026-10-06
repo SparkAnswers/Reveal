@@ -2,12 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
   "type": "panel",
   "name": "Reveal",
-  "id": "sparks1223-reveal-panel",
+  "id": "sparkanswers-reveal-panel",
   "info": {
     "keywords": ["panel", "image", "countdown", "reveal", "teaser"],
     "description": "Progressively reveals an image or GIF as a date approaches: blur, pixelate, puzzle and more",
     "author": {
-      "name": "Sparks1223",
+      "name": "SparkAnswers",
       "url": "https://github.com/SparkAnswers"
     },
     "logos": {

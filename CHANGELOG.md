@@ -9,7 +9,7 @@ Initial release.
 
 ### Added
 
-- Reveal panel (`sparks1223-reveal-panel`): hold one image (PNG/JPEG/WebP/SVG/GIF) behind a
+- Reveal panel (`sparkanswers-reveal-panel`): hold one image (PNG/JPEG/WebP/SVG/GIF) behind a
   time-based reveal that completes on a configurable reveal date.
 - Reveal modes: fade, blur (default), pixelate, jigsaw, shuffle, wipe, iris, scratch, blinds,
   mosaic, brightness, color, advent, puzzle and combo (ordered stack of modes).

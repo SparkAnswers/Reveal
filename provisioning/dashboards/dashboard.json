@@ -24,7 +24,7 @@
     {
       "title": "Reveal modes mockup",
       "type": "link",
-      "url": "https://github.com/sparks1223/Reveal/tree/main/mockups",
+      "url": "https://github.com/SparkAnswers/Reveal/tree/main/mockups",
       "targetBlank": true,
       "icon": "external link",
       "tags": []
@@ -34,7 +34,7 @@
   "panels": [
     {
       "id": 1,
-      "type": "sparks1223-reveal-panel",
+      "type": "sparkanswers-reveal-panel",
       "title": "Blur - the recommended default",
       "description": "Gaussian blur from 40px down to 0 with ease-in: shapes first, details last.",
       "gridPos": {
@@ -75,7 +75,7 @@
     },
     {
       "id": 2,
-      "type": "sparks1223-reveal-panel",
+      "type": "sparkanswers-reveal-panel",
       "title": "Pixelate - resolution increases",
       "description": "Canvas down/upscale; block size shrinks from 40px to 1px.",
       "gridPos": {
@@ -116,7 +116,7 @@
     },
     {
       "id": 3,
-      "type": "sparks1223-reveal-panel",
+      "type": "sparkanswers-reveal-panel",
       "title": "Jigsaw - one tile per day",
       "description": "8x5 grid, seeded order (seed derived from revealDate), one step per whole day.",
       "gridPos": {
@@ -160,7 +160,7 @@
     },
     {
       "id": 4,
-      "type": "sparks1223-reveal-panel",
+      "type": "sparkanswers-reveal-panel",
       "title": "Advent - 31 doors to November",
       "description": "Calendar-style: door n opens on day n; the next door is highlighted.",
       "gridPos": {
@@ -201,7 +201,7 @@
     },
     {
       "id": 10,
-      "type": "sparks1223-reveal-panel",
+      "type": "sparkanswers-reveal-panel",
       "title": "Pops up on even minutes",
       "description": "Schedule: every 2m, show for 1m, offset 0.",
       "gridPos": {
@@ -240,7 +240,7 @@
     },
     {
       "id": 11,
-      "type": "sparks1223-reveal-panel",
+      "type": "sparkanswers-reveal-panel",
       "title": "Pops up on odd minutes",
       "description": "Schedule: every 2m, show for 1m, offset 1m. Never on at the same time as the even panel.",
       "gridPos": {
@@ -279,7 +279,7 @@
     },
     {
       "id": 12,
-      "type": "sparks1223-reveal-panel",
+      "type": "sparkanswers-reveal-panel",
       "title": "Random: 50% of minutes, blurs in over 15s",
       "description": "Schedule: every 1m, reveal over 15s, show 30s, 50% chance per cycle (seeded).",
       "gridPos": {

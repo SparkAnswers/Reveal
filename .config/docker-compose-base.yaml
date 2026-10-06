@@ -1,7 +1,7 @@
 services:
   grafana:
     user: root
-    container_name: 'sparks1223-reveal-panel'
+    container_name: 'sparkanswers-reveal-panel'
 
     build:
       context: .
@@ -13,13 +13,13 @@ services:
     ports:
       - 3000:3000/tcp
     volumes:
-      - ../dist:/var/lib/grafana/plugins/sparks1223-reveal-panel
+      - ../dist:/var/lib/grafana/plugins/sparkanswers-reveal-panel
       - ../provisioning:/etc/grafana/provisioning
-      - ..:/root/sparks1223-reveal-panel
+      - ..:/root/sparkanswers-reveal-panel
 
     environment:
       NODE_ENV: development
-      GF_LOG_FILTERS: plugin.sparks1223-reveal-panel:debug
+      GF_LOG_FILTERS: plugin.sparkanswers-reveal-panel:debug
       GF_LOG_LEVEL: debug
       GF_DATAPROXY_LOGGING: 1
-      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: sparks1223-reveal-panel
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: sparkanswers-reveal-panel
