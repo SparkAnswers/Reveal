@@ -234,7 +234,7 @@ describe('RevealPanel', () => {
 
     it('is blank between cycles and shows "Next in" in the footer', () => {
       jest.setSystemTime(EVEN);
-      const { container } = renderPanel({ repeat: { ...repeat, offset: '1m' } });
+      renderPanel({ repeat: { ...repeat, offset: '1m' } });
       expect(screen.getByTestId('reveal-hidden')).toBeInTheDocument();
       expect(screen.queryByTestId('mode')).not.toBeInTheDocument();
       const stage = screen.getByTestId('reveal-hidden').parentElement!;
