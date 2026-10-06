@@ -127,20 +127,12 @@ fs.mkdirSync(memFrames, { recursive: true });
 const wait2 = untilNextEvenMinute();
 console.log(`waiting ${Math.round(wait2 / 1000)}s for the memory cycle`);
 await sleep(wait2 - 500);
-const mem = await panel('Memory reveal').boundingBox();
-const bw = await panel('Bandwidth per channel').boundingBox();
-const memRegion = {
-  x: Math.floor(mem.x),
-  y: Math.floor(mem.y),
-  width: Math.ceil(bw.x + bw.width - mem.x),
-  height: Math.ceil(mem.height),
-};
 const m0 = Date.now();
 let m = 0;
 while (Date.now() - m0 < 23_000) {
   await page.screenshot({
     path: path.join(memFrames, `f${String(m).padStart(3, '0')}.png`),
-    clip: memRegion,
+
     scale: 'css',
   });
   m++;
