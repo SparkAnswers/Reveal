@@ -7,7 +7,7 @@ Progressively reveals an image or GIF as a date approaches, or on a repeating sc
 <p>
   <img src="imgs/reveal-dashboard.png" alt="Four reveal modes on a dashboard" width="30%">
   <img src="imgs/panel-editor.png" alt="Panel editor with live preview" width="30%">
-  <img src="imgs/alternating-dashboard.png" alt="Two panels alternating every minute" width="30%">
+  <img src="imgs/alternating-dashboard.png" alt="LiveWire S2 telemetry with alternating surprise panels" width="30%">
 </p>
 
 ## Quick Start (Provides Grafana and Reveal via Docker.)
@@ -53,7 +53,7 @@ docker compose up
 
 **Preview** (editor only): a slider that scrubs the reveal from 0 to 100% without affecting viewers.
 
-Every seeded order (tiles, doors, scratches, random cycles) derives from the reveal date, so all viewers see the same state. Two demo dashboards ship with the stack (`Reveal demo` and `Reveal alternating`).
+Every seeded order (tiles, doors, scratches, random cycles) derives from the reveal date, so all viewers see the same state. Two demo dashboards ship with the stack (`Reveal demo` and `LiveWire S2 telemetry`).
 
 ## Usage
 

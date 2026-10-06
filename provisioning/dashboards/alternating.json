@@ -15,7 +15,7 @@
       }
     ]
   },
-  "description": "Two Reveal panels across the top alternate every minute using the Schedule options (every 2m, show for 1m, offsets 0 and 1m). The rest is TestData filler.",
+  "description": "Electric motorcycle telemetry board with two Reveal panels across the top that alternate every minute (Schedule: every 2m, show for 1m, offsets 0 and 1m). Metrics are TestData random walks.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -103,8 +103,8 @@
     },
     {
       "id": 3,
-      "type": "stat",
-      "title": "Requests / sec",
+      "type": "gauge",
+      "title": "Battery",
       "datasource": {
         "type": "testdata",
         "uid": "trlxrdZVk"
@@ -113,7 +113,7 @@
         "x": 0,
         "y": 8,
         "w": 6,
-        "h": 4
+        "h": 6
       },
       "targets": [
         {
@@ -124,19 +124,37 @@
           },
           "scenarioId": "random_walk",
           "min": 0,
-          "max": 1200,
-          "startValue": 840.0,
-          "spread": 60.0
+          "max": 100,
+          "startValue": 78,
+          "spread": 0.4
         }
       ],
       "fieldConfig": {
         "defaults": {
-          "unit": "reqps",
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "decimals": 0,
           "color": {
-            "mode": "fixed",
-            "fixedColor": "green"
+            "mode": "thresholds"
           },
-          "decimals": 1
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 20
+              },
+              {
+                "color": "green",
+                "value": 45
+              }
+            ]
+          }
         },
         "overrides": []
       },
@@ -146,16 +164,14 @@
           "fields": "",
           "values": false
         },
-        "graphMode": "area",
-        "colorMode": "value",
-        "textMode": "value",
-        "justifyMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       }
     },
     {
       "id": 4,
       "type": "stat",
-      "title": "p95 latency",
+      "title": "Range remaining",
       "datasource": {
         "type": "testdata",
         "uid": "trlxrdZVk"
@@ -164,7 +180,7 @@
         "x": 6,
         "y": 8,
         "w": 6,
-        "h": 4
+        "h": 6
       },
       "targets": [
         {
@@ -175,19 +191,21 @@
           },
           "scenarioId": "random_walk",
           "min": 0,
-          "max": 450,
-          "startValue": 315.0,
-          "spread": 22.5
+          "max": 120,
+          "startValue": 92,
+          "spread": 0.5
         }
       ],
       "fieldConfig": {
         "defaults": {
-          "unit": "ms",
+          "unit": "lengthmi",
+          "decimals": 0,
           "color": {
             "mode": "fixed",
-            "fixedColor": "yellow"
+            "fixedColor": "blue"
           },
-          "decimals": 1
+          "min": 0,
+          "max": 120
         },
         "overrides": []
       },
@@ -206,7 +224,7 @@
     {
       "id": 5,
       "type": "stat",
-      "title": "Error rate",
+      "title": "Motor temperature",
       "datasource": {
         "type": "testdata",
         "uid": "trlxrdZVk"
@@ -215,7 +233,7 @@
         "x": 12,
         "y": 8,
         "w": 6,
-        "h": 4
+        "h": 6
       },
       "targets": [
         {
@@ -225,20 +243,38 @@
             "uid": "trlxrdZVk"
           },
           "scenarioId": "random_walk",
-          "min": 0,
-          "max": 2,
-          "startValue": 1.4,
-          "spread": 0.1
+          "min": 20,
+          "max": 110,
+          "startValue": 54,
+          "spread": 0.6
         }
       ],
       "fieldConfig": {
         "defaults": {
-          "unit": "percent",
+          "unit": "celsius",
+          "decimals": 0,
           "color": {
-            "mode": "fixed",
-            "fixedColor": "red"
+            "mode": "thresholds"
           },
-          "decimals": 1
+          "min": 20,
+          "max": 110,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
         },
         "overrides": []
       },
@@ -257,7 +293,7 @@
     {
       "id": 6,
       "type": "stat",
-      "title": "Active users",
+      "title": "Charge power",
       "datasource": {
         "type": "testdata",
         "uid": "trlxrdZVk"
@@ -266,7 +302,7 @@
         "x": 18,
         "y": 8,
         "w": 6,
-        "h": 4
+        "h": 6
       },
       "targets": [
         {
@@ -277,19 +313,21 @@
           },
           "scenarioId": "random_walk",
           "min": 0,
-          "max": 900,
-          "startValue": 630.0,
-          "spread": 45.0
+          "max": 11,
+          "startValue": 7.2,
+          "spread": 0.15
         }
       ],
       "fieldConfig": {
         "defaults": {
-          "unit": "short",
+          "unit": "kwatt",
+          "decimals": 1,
           "color": {
             "mode": "fixed",
-            "fixedColor": "blue"
+            "fixedColor": "purple"
           },
-          "decimals": 1
+          "min": 0,
+          "max": 11
         },
         "overrides": []
       },
@@ -308,14 +346,14 @@
     {
       "id": 7,
       "type": "timeseries",
-      "title": "Throughput by service",
+      "title": "Speed",
       "datasource": {
         "type": "testdata",
         "uid": "trlxrdZVk"
       },
       "gridPos": {
         "x": 0,
-        "y": 12,
+        "y": 14,
         "w": 12,
         "h": 9
       },
@@ -327,17 +365,29 @@
             "uid": "trlxrdZVk"
           },
           "scenarioId": "random_walk",
-          "alias": "",
-          "seriesCount": 3
+          "alias": "Speed",
+          "min": 0,
+          "max": 110,
+          "startValue": 38,
+          "spread": 4
         }
       ],
       "fieldConfig": {
         "defaults": {
+          "unit": "velocitymph",
+          "decimals": 0,
+          "min": 0,
+          "max": 110,
           "custom": {
             "lineWidth": 2,
-            "fillOpacity": 12
+            "fillOpacity": 14,
+            "gradientMode": "opacity",
+            "showPoints": "never"
           },
-          "unit": "short"
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "yellow"
+          }
         },
         "overrides": []
       },
@@ -345,7 +395,7 @@
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -356,14 +406,14 @@
     {
       "id": 8,
       "type": "timeseries",
-      "title": "CPU usage",
+      "title": "Pack voltage",
       "datasource": {
         "type": "testdata",
         "uid": "trlxrdZVk"
       },
       "gridPos": {
         "x": 12,
-        "y": 12,
+        "y": 14,
         "w": 12,
         "h": 9
       },
@@ -375,19 +425,29 @@
             "uid": "trlxrdZVk"
           },
           "scenarioId": "random_walk",
-          "alias": "",
-          "seriesCount": 2,
-          "min": 0,
-          "max": 100
+          "alias": "Pack voltage",
+          "min": 300,
+          "max": 420,
+          "startValue": 372,
+          "spread": 1.2
         }
       ],
       "fieldConfig": {
         "defaults": {
+          "unit": "volt",
+          "decimals": 0,
+          "min": 300,
+          "max": 420,
           "custom": {
             "lineWidth": 2,
-            "fillOpacity": 12
+            "fillOpacity": 14,
+            "gradientMode": "opacity",
+            "showPoints": "never"
           },
-          "unit": "short"
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "green"
+          }
         },
         "overrides": []
       },
@@ -395,7 +455,7 @@
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "mode": "multi",
@@ -406,7 +466,7 @@
   ],
   "refresh": "1m",
   "schemaVersion": 39,
-  "tags": ["reveal", "demo"],
+  "tags": ["reveal", "demo", "livewire"],
   "templating": {
     "list": []
   },
@@ -416,7 +476,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Reveal alternating",
+  "title": "LiveWire S2 telemetry",
   "uid": "reveal-alternating",
   "version": 1,
   "weekStart": ""

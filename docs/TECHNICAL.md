@@ -118,8 +118,8 @@ start-date alignment, an `offset`, and a seeded `chance` per cycle. Two panels w
 ### Demo dashboards
 
 - **Reveal demo** (`/d/reveal-demo`): the four date-based modes plus even/odd/random schedule panels.
-- **Reveal alternating** (`/d/reveal-alternating`): two Reveal panels across the top that alternate
-  every minute above ordinary metric panels. Surprise A uses offset `0`, Surprise B offset `1m`.
+- **LiveWire S2 telemetry** (`/d/reveal-alternating`): two Reveal panels across the top that alternate
+  every minute above an electric-motorcycle telemetry board. Surprise A uses offset `0`, Surprise B offset `1m`.
 
 ## Secrecy caveat - please read
 
