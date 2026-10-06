@@ -96,4 +96,27 @@ await shot('memory-dashboard.png');
 await open('reveal-demo');
 await shot('reveal-dashboard.png');
 
+// 5. Ghost demo: wait until a ghost is showing, film it waving, then take the still.
+await open('reveal-ghost');
+const ghostFrames = path.resolve('.cache/ghost-frames');
+fs.rmSync(ghostFrames, { recursive: true, force: true });
+fs.mkdirSync(ghostFrames, { recursive: true });
+await page.waitForFunction(
+  () =>
+    [...document.querySelectorAll('section[data-testid^="data-testid Panel header"] img')].some((i) =>
+      i.src.startsWith('data:image/gif')
+    ),
+  null,
+  { timeout: 130_000 }
+);
+let g = 0;
+const g0 = Date.now();
+while (Date.now() - g0 < 6_000) {
+  await page.screenshot({ path: path.join(ghostFrames, `f${String(g).padStart(3, '0')}.png`), scale: 'css' });
+  g++;
+  await sleep(300);
+}
+console.log('captured', g, 'ghost frames');
+await shot('ghost-dashboard.png');
+
 await browser.close();

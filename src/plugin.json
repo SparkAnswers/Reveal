@@ -42,6 +42,10 @@
         "path": "img/screenshot-memory.png"
       },
       {
+        "name": "Ghost demo: a GIF that pops up in a random corner each minute",
+        "path": "img/screenshot-ghost.png"
+      },
+      {
         "name": "Panel editor with live preview",
         "path": "img/screenshot-editor.png"
       }

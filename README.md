@@ -13,6 +13,8 @@ Progressively reveals an image or GIF as a date approaches, or on a repeating sc
   <img src="imgs/memory-dashboard.png" alt="Memory demo with a scheduled memory reveal" width="30%">
 </p>
 <p>
+  <img src="imgs/ghost-dashboard.png" alt="Ghost demo: a GIF ghost pops up in a random corner each minute" width="30%">
+  <img src="imgs/ghost-demo.gif" alt="The ghost waving once revealed" width="30%">
   <img src="imgs/panel-editor.png" alt="Panel editor with live preview" width="30%">
 </p>
 
@@ -24,7 +26,7 @@ cd reveal
 docker compose up
 
 # Grafana:   http://localhost:3000/   (anonymous viewer; admin / admin to edit)
-# Demos:     /d/reveal-demo, /d/reveal-motorcycle, /d/reveal-memory
+# Demos:     /d/reveal-demo, /d/reveal-motorcycle, /d/reveal-memory, /d/reveal-ghost
 ```
 
 ## Installation (existing Grafana)
@@ -94,7 +96,7 @@ Grafana Cloud does not accept unsigned plugins; that needs the catalog listing, 
 
 **Preview** (editor only): a slider that scrubs the reveal from 0 to 100% without affecting viewers.
 
-Every seeded order (tiles, doors, scratches, random cycles) derives from the reveal date, so all viewers see the same state. Three demo dashboards ship with the stack: `Reveal demo` (all modes plus even/odd/random schedule panels), `Motorcycle demo` and `Memory demo` (each with a scheduled reveal beside product metrics).
+Every seeded order (tiles, doors, scratches, random cycles) derives from the reveal date, so all viewers see the same state. Four demo dashboards ship with the stack: `Reveal demo` (all modes plus even/odd/random schedule panels), `Motorcycle demo` and `Memory demo` (each with a scheduled reveal beside product metrics), and `Ghost demo` (a GIF ghost that pops up in a random corner each minute and waves once revealed).
 
 ## Usage
 

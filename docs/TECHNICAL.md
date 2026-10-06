@@ -126,6 +126,8 @@ start-date alignment, an `offset`, and a seeded `chance` per cycle. Two panels w
   15s, shown 90s) beside a Geomap of the last ride and motorcycle telemetry.
 - **Memory demo** (`/d/reveal-memory`): a scheduled "Memory reveal" (pixelate in over 20s) beside
   memory bandwidth, utilization, temperature and ECC panels.
+- **Ghost demo** (`/d/reveal-ghost`): four GIF panels in the corners, each every 1m with a 50% seeded
+  chance and its own offset, so the ghost appears somewhere different each minute and waves once shown.
 - The even/odd alternating panels live on the Reveal demo dashboard.
 
 ## Secrecy caveat - please read

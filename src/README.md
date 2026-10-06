@@ -9,6 +9,7 @@ or a surprise that pops up in different places over the day.
 ![Four reveal modes on a dashboard](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/reveal-dashboard.png)
 ![Panel editor with live preview](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/panel-editor.png)
 ![A motorcycle blurring into view on a scheduled reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/bike-reveal.gif)
+![A GIF ghost popping up in a random corner and waving once revealed](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/ghost-demo.gif)
 ![Motorcycle demo with a scheduled bike reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/motorcycle-dashboard.png)
 ![Memory demo with a scheduled memory reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/memory-dashboard.png)
 
