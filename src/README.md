@@ -8,8 +8,9 @@ or a surprise that pops up in different places over the day.
 
 ![Four reveal modes on a dashboard](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/reveal-dashboard.png)
 ![Panel editor with live preview](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/panel-editor.png)
-![LiveWire S2 telemetry with a scheduled bike reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/livewire-dashboard.png)
-![Micron DDR5 MRDIMM board with a scheduled memory reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/micron-dashboard.png)
+![A motorcycle blurring into view on a scheduled reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/bike-reveal.gif)
+![Motorcycle demo with a scheduled bike reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/motorcycle-dashboard.png)
+![Memory demo with a scheduled memory reveal](https://raw.githubusercontent.com/SparkAnswers/reveal/main/imgs/memory-dashboard.png)
 
 ## Features
 
@@ -38,6 +39,13 @@ and every refresh sees the same state.
 ```
 dashboard JSON (image + dates + mode) -> timer -> progress -> easing -> reveal mode -> <img>
 ```
+
+## Installation
+
+Reveal is unsigned until it is listed in the Grafana catalog, so allow it explicitly:
+unzip the release into `<plugins dir>/sparkanswers-reveal-panel`, set
+`GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=sparkanswers-reveal-panel` (or the
+`allow_loading_unsigned_plugins` setting in `grafana.ini`), and restart Grafana.
 
 ## Requirements
 

@@ -53,6 +53,10 @@ Design mockups live in [`mockups/screenshots`](../mockups/screenshots):
 | ![Panel on a dashboard](../mockups/screenshots/panel-mockup-dashboard.png) | ![Panel editor](../mockups/screenshots/panel-mockup-editor.png)     |
 | Panel on a dashboard                                                       | Panel editor                                                        |
 
+`scripts/capture-screenshots.mjs` regenerates every screenshot and the GIF from a running Grafana
+(`node scripts/capture-screenshots.mjs http://localhost:3000 <path to chrome>`; it needs the
+`playwright-core` dev dependency and a Chromium binary).
+
 Open [`mockups/reveal-modes.html`](../mockups/reveal-modes.html) in a browser to scrub through every
 mode interactively.
 
@@ -118,9 +122,9 @@ start-date alignment, an `offset`, and a seeded `chance` per cycle. Two panels w
 ### Demo dashboards
 
 - **Reveal demo** (`/d/reveal-demo`): the four date-based modes plus even/odd/random schedule panels.
-- **LiveWire S2 telemetry** (`/d/reveal-alternating`): a scheduled "Bike reveal" (every 2m, blur in over
+- **Motorcycle demo** (`/d/reveal-motorcycle`): a scheduled "Bike reveal" (every 2m, blur in over
   15s, shown 90s) beside a Geomap of the last ride and motorcycle telemetry.
-- **Micron DDR5 MRDIMM** (`/d/reveal-micron`): a scheduled "Memory reveal" (pixelate in over 20s) beside
+- **Memory demo** (`/d/reveal-memory`): a scheduled "Memory reveal" (pixelate in over 20s) beside
   memory bandwidth, utilization, temperature and ECC panels.
 - The even/odd alternating panels live on the Reveal demo dashboard.
 

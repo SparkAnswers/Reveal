@@ -105,7 +105,7 @@
           "pixelMaxSize": 40
         },
         "easing": "easeIn",
-        "caption": "Here it is: 256GB DDR5 MRDIMM!"
+        "caption": "Here it is: the new memory!"
       },
       "fieldConfig": {
         "defaults": {},
@@ -190,7 +190,7 @@
           "doors": 31
         },
         "easing": "steps",
-        "caption": "Here it is: 256GB DDR5 MRDIMM!"
+        "caption": "Here it is: the new memory!"
       },
       "fieldConfig": {
         "defaults": {},

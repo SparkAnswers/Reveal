@@ -34,12 +34,12 @@
         "path": "img/screenshot-dashboard.png"
       },
       {
-        "name": "LiveWire S2 telemetry with a scheduled bike reveal",
-        "path": "img/screenshot-livewire.png"
+        "name": "Motorcycle demo with a scheduled bike reveal",
+        "path": "img/screenshot-motorcycle.png"
       },
       {
-        "name": "Micron DDR5 MRDIMM board with a scheduled memory reveal",
-        "path": "img/screenshot-micron.png"
+        "name": "Memory demo with a scheduled memory reveal",
+        "path": "img/screenshot-memory.png"
       },
       {
         "name": "Panel editor with live preview",

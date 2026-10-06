@@ -15,7 +15,7 @@
       }
     ]
   },
-  "description": "Server memory board. The Memory reveal panel cycles every 2 minutes (Schedule: every 2m, reveal over 20s, show for 90s) beside DDR5 MRDIMM bandwidth, utilization, temperature and ECC metrics. Metrics are TestData random walks.",
+  "description": "Server memory board. The Memory reveal panel cycles every 2 minutes (Schedule: every 2m, reveal over 20s, show for 90s) beside DDR5 bandwidth, utilization, temperature and ECC metrics. Metrics are TestData random walks.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -27,7 +27,7 @@
       "id": 1,
       "type": "sparkanswers-reveal-panel",
       "title": "Memory reveal",
-      "description": "Schedule: every 2m, pixelates in over 20s, shown for 90s. Micron 256GB DDR5 MRDIMM.",
+      "description": "Schedule: every 2m, pixelates in over 20s, shown for 90s.",
       "gridPos": {
         "x": 0,
         "y": 0,
@@ -616,7 +616,7 @@
   ],
   "refresh": "1m",
   "schemaVersion": 39,
-  "tags": ["reveal", "demo", "micron"],
+  "tags": ["reveal", "demo", "memory"],
   "templating": {
     "list": []
   },
@@ -626,8 +626,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Micron DDR5 MRDIMM",
-  "uid": "reveal-micron",
+  "title": "Memory demo",
+  "uid": "reveal-memory",
   "version": 1,
   "weekStart": ""
 }

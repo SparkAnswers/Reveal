@@ -5,9 +5,12 @@ Progressively reveals an image or GIF as a date approaches, or on a repeating sc
 ## Screenshots
 
 <p>
+  <img src="imgs/bike-reveal.gif" alt="A motorcycle blurring into view on a scheduled reveal" width="92%">
+</p>
+<p>
   <img src="imgs/reveal-dashboard.png" alt="Four reveal modes on a dashboard" width="30%">
-  <img src="imgs/livewire-dashboard.png" alt="LiveWire S2 telemetry with a scheduled bike reveal" width="30%">
-  <img src="imgs/micron-dashboard.png" alt="Micron DDR5 MRDIMM board with a scheduled memory reveal" width="30%">
+  <img src="imgs/motorcycle-dashboard.png" alt="Motorcycle demo with a scheduled bike reveal" width="30%">
+  <img src="imgs/memory-dashboard.png" alt="Memory demo with a scheduled memory reveal" width="30%">
 </p>
 <p>
   <img src="imgs/panel-editor.png" alt="Panel editor with live preview" width="30%">
@@ -21,8 +24,43 @@ cd reveal
 docker compose up
 
 # Grafana:   http://localhost:3000/   (anonymous viewer; admin / admin to edit)
-# Demos:     /d/reveal-demo, /d/reveal-alternating (LiveWire), /d/reveal-micron (Micron)
+# Demos:     /d/reveal-demo, /d/reveal-motorcycle, /d/reveal-memory
 ```
+
+## Installation (existing Grafana)
+
+Reveal is not yet signed by Grafana Labs, so Grafana has to be told to allow it.
+
+1. Download `sparkanswers-reveal-panel-<version>.zip` from the
+   [releases page](https://github.com/SparkAnswers/reveal/releases) (or build one with `make package`).
+2. Unzip it into your Grafana plugins directory so you end up with
+   `<plugins dir>/sparkanswers-reveal-panel/plugin.json`. The default directory is
+   `/var/lib/grafana/plugins`.
+3. Allow the unsigned plugin, either in `grafana.ini`:
+
+   ```ini
+   [plugins]
+   allow_loading_unsigned_plugins = sparkanswers-reveal-panel
+   ```
+
+   or with an environment variable (Docker, Kubernetes):
+
+   ```bash
+   GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=sparkanswers-reveal-panel
+   ```
+
+4. Restart Grafana. "Reveal" appears in the visualization picker.
+
+**Docker one-liner** against the official image, installing straight from a release zip:
+
+```bash
+docker run -d -p 3000:3000 \
+  -e GF_INSTALL_PLUGINS="https://github.com/SparkAnswers/reveal/releases/download/v1.0.0/sparkanswers-reveal-panel-1.0.0.zip;sparkanswers-reveal-panel" \
+  -e GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=sparkanswers-reveal-panel \
+  grafana/grafana:12.4.12
+```
+
+Grafana Cloud does not accept unsigned plugins; that needs the catalog listing, which is in progress.
 
 ## Configuration
 
@@ -56,7 +94,7 @@ docker compose up
 
 **Preview** (editor only): a slider that scrubs the reveal from 0 to 100% without affecting viewers.
 
-Every seeded order (tiles, doors, scratches, random cycles) derives from the reveal date, so all viewers see the same state. Three demo dashboards ship with the stack: `Reveal demo` (all modes plus even/odd/random schedule panels), `LiveWire S2 telemetry` and `Micron DDR5 MRDIMM` (each with a scheduled reveal beside product metrics).
+Every seeded order (tiles, doors, scratches, random cycles) derives from the reveal date, so all viewers see the same state. Three demo dashboards ship with the stack: `Reveal demo` (all modes plus even/odd/random schedule panels), `Motorcycle demo` and `Memory demo` (each with a scheduled reveal beside product metrics).
 
 ## Usage
 
