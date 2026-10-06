@@ -52,3 +52,9 @@ out/
 *.zip
 .cache/
 .grafana-local/
+
+# Local agent tooling, not part of the plugin
+.claude/
+.openrig/
+openrig-specs/
+.mcp.json

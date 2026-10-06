@@ -32,3 +32,6 @@ docker-compose.yaml
 Makefile
 
 .grafana-local/
+.openrig/
+openrig-specs/
+.mcp.json
