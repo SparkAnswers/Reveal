@@ -118,8 +118,11 @@ start-date alignment, an `offset`, and a seeded `chance` per cycle. Two panels w
 ### Demo dashboards
 
 - **Reveal demo** (`/d/reveal-demo`): the four date-based modes plus even/odd/random schedule panels.
-- **LiveWire S2 telemetry** (`/d/reveal-alternating`): two Reveal panels across the top that alternate
-  every minute above an electric-motorcycle telemetry board. Surprise A uses offset `0`, Surprise B offset `1m`.
+- **LiveWire S2 telemetry** (`/d/reveal-alternating`): a scheduled "Bike reveal" (every 2m, blur in over
+  15s, shown 90s) beside a Geomap of the last ride and motorcycle telemetry.
+- **Micron DDR5 MRDIMM** (`/d/reveal-micron`): a scheduled "Memory reveal" (pixelate in over 20s) beside
+  memory bandwidth, utilization, temperature and ECC panels.
+- The even/odd alternating panels live on the Reveal demo dashboard.
 
 ## Secrecy caveat - please read
 

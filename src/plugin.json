@@ -34,8 +34,12 @@
         "path": "img/screenshot-dashboard.png"
       },
       {
-        "name": "LiveWire S2 telemetry with alternating surprise panels",
-        "path": "img/screenshot-alternating.png"
+        "name": "LiveWire S2 telemetry with a scheduled bike reveal",
+        "path": "img/screenshot-livewire.png"
+      },
+      {
+        "name": "Micron DDR5 MRDIMM board with a scheduled memory reveal",
+        "path": "img/screenshot-micron.png"
       },
       {
         "name": "Panel editor with live preview",
